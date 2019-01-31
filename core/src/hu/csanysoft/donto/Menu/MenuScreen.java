@@ -3,7 +3,7 @@ package hu.csanysoft.donto.Menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.Donto;
@@ -19,7 +19,7 @@ public class MenuScreen extends MyScreen {
 
     @Override
     public void init() {
-        stage = new MenuStage(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
+        stage = new MenuStage(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         Gdx.input.setInputProcessor(stage);
     }
 

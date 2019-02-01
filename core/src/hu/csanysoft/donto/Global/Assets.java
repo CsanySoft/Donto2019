@@ -120,6 +120,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> GAMEOVER_TEXTURE
             = new AssetDescriptor<Texture>("gameover.png", Texture.class);
 
+    public static final AssetDescriptor<Texture> KEK
+            = new AssetDescriptor<Texture>("kek.png", Texture.class);
+
     public static final AssetDescriptor<Texture> WHITEBLOODCELL_TEXTURE
             = new AssetDescriptor<Texture>("animations/whiteBloodCells.png", Texture.class);
 
@@ -164,6 +167,7 @@ public class Assets {
 
         manager.load(ANTIPILL_TEXTURE);
         manager.load(WHITEBLOOD_ATLAS);
+        manager.load(KEK);
         manager.load(WHITEBLOODCELL_TEXTURE);
         manager.load(ANDROID_TEXTURE);
         //Ellenfelek

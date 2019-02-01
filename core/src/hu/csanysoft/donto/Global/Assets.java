@@ -155,6 +155,7 @@ public class Assets {
         manager.load(ROBOT_ATLAS);
         manager.load(BACKGROUND_TEXTURE);
         manager.load(BACKGROUNDWATER_TEXTURE);
+
         manager.load(EXPLOSION_ATLAS);
         manager.load(ARROW_TEXTURE);
         manager.load(SPLASH_SOUND);

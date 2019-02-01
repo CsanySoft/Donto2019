@@ -13,6 +13,7 @@ import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.Donto;
 import hu.csanysoft.donto.MyBaseClasses.MyTextButton;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyStage;
+import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteAnimatedActor;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanysoft.donto.Tutorial.TutorialScreen;
 

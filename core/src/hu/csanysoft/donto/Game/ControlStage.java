@@ -169,5 +169,11 @@ public class ControlStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         gameover.setVisible(!gameStage.robot.isVisible());
+        if(!gameStage.robot.isVisible()) {
+            MyLabel halalOka = new MyLabel(gameStage.halalOka, Donto.getColorLabelStyle(Color.WHITE));
+            halalOka.setPosition(Globals.WORLD_WIDTH / 2 - halalOka.getWidth() / 2, gameover.getY() - 50);
+            addActor(halalOka);
+        }
+
     }
 }

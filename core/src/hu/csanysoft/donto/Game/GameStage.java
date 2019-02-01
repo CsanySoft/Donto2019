@@ -21,6 +21,7 @@ import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyActor;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyStage;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteActor;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanysoft.donto.MyBaseClasses.UI.MyLabel;
 
 import static hu.csanysoft.donto.Global.Globals.random;
 
@@ -33,6 +34,7 @@ public class GameStage extends MyStage {
     public static int level = 1;
     public int badVirusCount, goodVirusCount;
     public float upgradeTimer = 0;
+    public String halalOka;
 
     public static int WORLD_BOUND_X = 1920, WORLD_BOUND_Y = 1080;
 
@@ -131,10 +133,10 @@ public class GameStage extends MyStage {
 
                 //ROBOT A VÍRUSSAL
                 if(robot.overlaps(overlappedVirus)) {
-                    if(overlappedVirus instanceof GoodVirus && !robot.hasShield) die();
+                    if(overlappedVirus instanceof GoodVirus && !robot.hasShield) die("You tried to kill a good virus");
                     else if(overlappedVirus instanceof BadVirus) {
                         if(((BadVirus) overlappedVirus).needsABetterWeaponToDestroy && !robot.hasWeaponUpgrade) {
-                            die();
+                            die("You tried to kill a shielded virus without a weapon");
                         } else {
                             overlappedVirus.die();
                             badVirusCount--;
@@ -173,7 +175,7 @@ public class GameStage extends MyStage {
             //ROBOT A FEHÉR SEJTTEL
             else if (actor instanceof WhiteBloodCell){
                 if(robot.overlaps((MyActor) actor) && !robot.hasShield){
-                    die();
+                    die("You got caught by a white blood cell");
                 }
             }
         }
@@ -194,7 +196,7 @@ public class GameStage extends MyStage {
         //BADVIRUS SZÁMOLÁS VÉGE
 
 
-        if(goodVirusCount == 0) die();
+        if(goodVirusCount == 0) die("There are no more good viruses");
         if(robot.isVisible())setCameraZoomXY(robot.getX()+robot.getWidth()/2, robot.getY()+robot.getHeight()/2, 0.6f); //KAMERAMOZGÁS
 
         if(upgradeTimer >= 10) {
@@ -204,10 +206,11 @@ public class GameStage extends MyStage {
         }
     }
 
-    public void die() {
+    public void die(String s) {
         if(!robot.isVisible())
             return;
         robot.setVisible(false);
+        halalOka = s;
         long f = Assets.manager.get(Assets.LOST_SOUND).play();
         Assets.manager.get(Assets.LOST_SOUND).setVolume(f, 50);
     }

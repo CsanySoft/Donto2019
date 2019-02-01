@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="body.png" width="469" height="469" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="prop.png" width="243" height="32" pivot_x="0.497942" pivot_y="0.75"/>
+        <file id="2" name="prop1.png" width="121" height="32" pivot_x="1.00826" pivot_y="0.75"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="NewAnimation" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="499">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-234" y="286"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="prop">
+                <key id="0">
+                    <object folder="0" file="1" x="0.240469" y="-157.941349"/>
+                </key>
+                <key id="1" time="499">
+                    <object folder="0" file="1" x="0.240469" y="-157.941349" angle="0" scale_x="-0.046435"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="prop1">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="0.24047" y="-157.94135" scale_x="0.052751"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

@@ -122,6 +122,7 @@ public class GameStage extends MyStage {
                 Virus overlappedVirus = (Virus)actor;
 
                 //VÍRUS  VÍRUSSAL
+                /*
                 for(Actor virus : getActors().toArray()) {
                     if(actor instanceof GoodVirus && virus instanceof BadVirus) {
                         if(((GoodVirus) actor).overlaps((BadVirus) virus)) {
@@ -140,7 +141,7 @@ public class GameStage extends MyStage {
                             goodVirusCount--;
                         }
                     }
-                }
+                } */
                 //VÍRUS A VÍRUSSAL VÉGE
 
                 //ROBOT A VÍRUSSAL

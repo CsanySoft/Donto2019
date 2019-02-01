@@ -127,6 +127,7 @@ public class GameStage extends MyStage {
                 Virus overlappedVirus = (Virus)actor;
 
                 //VÍRUS  VÍRUSSAL
+                /*
                 for(Actor virus : getActors().toArray()) {
                     if(actor instanceof GoodVirus && virus instanceof BadVirus) {
                         if(((GoodVirus) actor).overlaps((BadVirus) virus)) {
@@ -145,7 +146,7 @@ public class GameStage extends MyStage {
                             goodVirusCount--;
                         }
                     }
-                }
+                } */
                 //VÍRUS A VÍRUSSAL VÉGE
 
                 //ROBOT A VÍRUSSAL
@@ -262,7 +263,6 @@ public class GameStage extends MyStage {
             while(cell.getX() > WORLD_BOUND_X/2-200 && cell.getX() < WORLD_BOUND_X/2+200) cell.setX(random(150, WORLD_BOUND_X-150));
             while(cell.getY() > WORLD_BOUND_Y/2-200 && cell.getY() < WORLD_BOUND_Y/2+200) cell.setY(random(150, WORLD_BOUND_Y-150));
         }
-
 
         if(keyCode == Input.Keys.BACK || keyCode == Input.Keys.ESCAPE){
             game.setScreenBackByStackPop();

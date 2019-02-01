@@ -7,6 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.csanysoft.donto.Actors.BadVirus;
+import hu.csanysoft.donto.Actors.GoodVirus;
+import hu.csanysoft.donto.Actors.MovingBackground;
 import hu.csanysoft.donto.Game.GameScreen;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
@@ -33,6 +36,7 @@ public class MenuStage extends MyStage {
                 setRotation((float) (Math.sin(elapsedTime)*10));
             }
         }; */
+        addActor(new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE),Globals.WORLD_WIDTH + 100, Globals.WORLD_HEIGHT + 100, 0, 0, 100), 0);
         MyTextButton start = new MyTextButton("Start"){
             @Override
             public void init() {
@@ -112,9 +116,9 @@ public class MenuStage extends MyStage {
 
        // addActor(logo);
        // addActor(spiral);
-        addActor(tutorial);
-        addActor(start);
-        addActor(exit);
+        addActor(tutorial, 10);
+        addActor(start, 10);
+        addActor(exit, 10);
 
         //start.magnify(2);
         //tutorial.magnify(2);
@@ -134,6 +138,11 @@ public class MenuStage extends MyStage {
        // spiral.setOrigintoCenter();
        // spiral.setPositionCenterOfActorToCenterOfViewport();
        // spiral.setZIndex(0);
+
+        for(int i = 0; i < 10; i++) {
+            addActor(new GoodVirus());
+            addActor(new BadVirus());
+        }
     }
 
     @Override

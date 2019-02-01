@@ -29,12 +29,14 @@ public class Robot extends MultiSpriteActor {
         shieldSprite = new OffsetSprite(Assets.manager.get(Assets.EXIT), -25,-20,100,100);
         addSprite(shieldSprite);
         addBaseCollisionRectangleShape();
+        if(hasWeaponUpgrade) addSprite(new OffsetSprite(Assets.manager.get(Assets.CHIPWEAPON_TEXTURE), 10, 20, 30,30));
     }
 
     public void addUpgrade(int type) {
         switch (type) {
             case 0: {
                 hasWeaponUpgrade = true;
+                addSprite(new OffsetSprite(Assets.manager.get(Assets.CHIPWEAPON_TEXTURE), 10, 20, 30,30));
                 break;
             }
             case 1: {

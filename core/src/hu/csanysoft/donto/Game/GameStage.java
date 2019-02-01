@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import hu.csanysoft.donto.Actors.GoodVirus;
 import hu.csanysoft.donto.Actors.Robot;
 import hu.csanysoft.donto.Actors.BadVirus;
+import hu.csanysoft.donto.Actors.Upgrade;
 import hu.csanysoft.donto.Actors.Virus;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
@@ -27,14 +28,20 @@ public class GameStage extends MyStage {
     public boolean left = false, right = false, forward = false;
     Robot robot;
     OneSpriteStaticActor background;
-
-    float robotSpeedMultiplier = 2;
-
+    public static int level = 1;
+    public int badVirusCount = 0;
 
 
     public GameStage(Donto game) {
         super(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         addActor(new BadVirus());
+        Upgrade upgrade;
+        addActor(upgrade = new Upgrade(Upgrade.SPEED));
+        upgrade.setPosition(300, 300);
+        addActor(upgrade = new Upgrade(Upgrade.WEAPON));
+        upgrade.setPosition(600, 600);
+        addActor(upgrade = new Upgrade(Upgrade.SHIELD));
+        upgrade.setPosition(500, 500);
     }
 
 
@@ -55,17 +62,15 @@ public class GameStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         //KARAKTER MOZGÁSA
-        if(robot.hasSpeedUpgrade) robotSpeedMultiplier = 4;
-        else robotSpeedMultiplier = 2;
         if(forward || Gdx.input.isKeyPressed(Input.Keys.UP)){
             double rotation = Math.toRadians(robot.getRotation()+90);
-            robot.moveBy(robotSpeedMultiplier*(float)Math.cos(rotation), robotSpeedMultiplier*(float)Math.sin(rotation));
+            robot.moveBy((robot.baseSpeed+robot.speedUpgrade)*(float)Math.cos(rotation), (robot.baseSpeed+robot.speedUpgrade)*(float)Math.sin(rotation));
         }
         if(left  || Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            robot.rotateBy(2);
+            robot.rotateBy(robot.baseSpeed+robot.speedUpgrade/2);
         }
         if(right  || Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            robot.rotateBy(-2);
+            robot.rotateBy(-(robot.baseSpeed+robot.speedUpgrade/2));
         }
         //KARAKTER MOZGÁSA VÉGE
 
@@ -85,6 +90,19 @@ public class GameStage extends MyStage {
             }
         }
         //ÜTKÖZÉSVIZSGÁLAT VÉGE
+
+        //BADVIRUS SZÁMOLÁS
+        badVirusCount = 0; //BEÁLLÍTANI NULLÁRA, FORCIKLUSBAN SZÁMOL
+        for(Actor actor:getActors()) {
+            if(actor instanceof BadVirus) badVirusCount++;
+        }
+        if(badVirusCount == 0) {
+            System.out.println("Következő szint");
+            level++;
+            game.setScreen(new GameScreen(game));
+            this.dispose();
+        }
+        //BADVIRUS SZÁMOLÁS VÉGE
     }
 
     public void die() {
@@ -94,8 +112,10 @@ public class GameStage extends MyStage {
     @Override
     public boolean keyDown(int keyCode) {
         if(keyCode == Input.Keys.S){
-            robot.hasSpeedUpgrade = ! robot.hasSpeedUpgrade;
-
+            robot.speedUpgrade++;
+        }
+        if(keyCode == Input.Keys.D){
+            robot.hasShield = true;
         }
 
 

@@ -9,13 +9,14 @@ public class Robot extends MultiSpriteActor {
 
     AnimatedOffsetSprite body;
     AnimatedOffsetSprite trail;
-    OffsetSprite shield;
+    OffsetSprite shieldSprite;
 
-    public boolean hasSpeedUpgrade = false;
-    public boolean hasWeaponUpgrade = false;
-    public boolean hasShield = false;
+    public final int baseSpeed = 2;
+    public static int speedUpgrade = 0;
+    public static boolean hasWeaponUpgrade = false;
+    public static boolean hasShield = false;
 
-    float shieldTimeLeft = 30;
+    public static float shieldTimeLeft = 30;
 
     float lastX = 0, lastY = 0;
 
@@ -25,6 +26,8 @@ public class Robot extends MultiSpriteActor {
         addSprite(body);
         trail = new AnimatedOffsetSprite(Assets.manager.get(Assets.EXPLOSION_ATLAS), 10, -60, 30, 80);
         addSprite(trail);
+        shieldSprite = new OffsetSprite(Assets.manager.get(Assets.EXIT), -25,-20,100,100);
+        addSprite(shieldSprite);
         addBaseCollisionRectangleShape();
     }
 
@@ -43,11 +46,12 @@ public class Robot extends MultiSpriteActor {
         lastY = getY();
 
         if(hasShield){
+            shieldSprite.setVisible(true);
             shieldTimeLeft -= delta;
             if(shieldTimeLeft < 0){
                 hasShield = false;
                 shieldTimeLeft = 30;
             }
-        }
+        }else shieldSprite.setVisible(false);
     }
 }

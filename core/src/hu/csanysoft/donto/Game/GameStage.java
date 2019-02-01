@@ -9,7 +9,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import hu.csanysoft.donto.Actors.*;
@@ -28,7 +30,7 @@ import static hu.csanysoft.donto.Global.Globals.random;
 
 public class GameStage extends MyStage {
 
-    public boolean left = false, right = false, forward = false;
+    public boolean left = false, right = false, forward = false, won = false;
     Robot robot;
     OneSpriteStaticActor background;
     public static int level = 1;
@@ -39,7 +41,7 @@ public class GameStage extends MyStage {
     public static int WORLD_BOUND_X = 1920, WORLD_BOUND_Y = 1080;
 
 
-    public GameStage(Donto game) {
+    public GameStage(Donto game, boolean newGame) {
         super(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         for (int i = 0; i < level; i++) {
             addActor(new BadVirus());
@@ -47,7 +49,17 @@ public class GameStage extends MyStage {
             addActor(new GoodVirus());
             badVirusCount++; goodVirusCount++;
         }
+        if(newGame){
+            robot.hasShield = false;
+            robot.shieldTimeLeft = 0;
+            robot.hasWeaponUpgrade = false;
+            robot.speedUpgrade = 0;
+            level = 1;
+        }
+
     }
+
+
 
 
     @Override
@@ -186,18 +198,28 @@ public class GameStage extends MyStage {
        /* for(Actor actor:getActors()) {
             if(actor instanceof BadVirus) badVirusCount++;
         } */
-        if(badVirusCount == 0) {
+        if(badVirusCount == 0 & !won) {
+            won = true;
             System.out.println("Következő szint");
             Assets.manager.get(Assets.WIN_SOUND).play();
-            level++;
-            game.setScreen(new GameScreen(game));
-            this.dispose();
+            //todo oide
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    level++;
+                    game.setScreen(new GameScreen(game, false));
+                }
+            }, 2);
         }
         //BADVIRUS SZÁMOLÁS VÉGE
 
 
         if(goodVirusCount == 0) die("There are no more good viruses");
         if(robot.isVisible())setCameraZoomXY(robot.getX()+robot.getWidth()/2, robot.getY()+robot.getHeight()/2, 0.6f); //KAMERAMOZGÁS
+        else{
+            setCameraMoveToXY(WORLD_BOUND_X / 2, WORLD_BOUND_Y / 2 + 1, 1, .1f, 100);
+
+        }
 
         if(upgradeTimer >= 10) {
             upgradeTimer = 0;
@@ -213,6 +235,9 @@ public class GameStage extends MyStage {
         halalOka = s;
         long f = Assets.manager.get(Assets.LOST_SOUND).play();
         Assets.manager.get(Assets.LOST_SOUND).setVolume(f, 50);
+        setCameraMoveSpeed(.1f);
+
+
     }
 
     @Override

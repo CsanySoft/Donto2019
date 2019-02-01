@@ -18,7 +18,7 @@ public class WhiteBloodCell extends OneSpriteAnimatedActor {
     float maxSpeed = .4f;
 
     public WhiteBloodCell(float x, float y, Robot robot) {
-        super(Assets.manager.get(Assets.EXPLOSION_ATLAS));
+        super(Assets.manager.get(Assets.SPLASH_ATLAS));
         setSize(150,150);
         setPosition(x,y);
         this.robot = robot;

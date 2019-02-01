@@ -78,6 +78,9 @@ public class Assets {
     public static final AssetDescriptor<TextureAtlas> EXPLOSION_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/explosion2.atlas", TextureAtlas.class);
 
+    public static final AssetDescriptor<TextureAtlas> SPLASH_ATLAS
+            = new AssetDescriptor<TextureAtlas>("animations/greenexplosion.atlas", TextureAtlas.class);
+
     public static final AssetDescriptor<Texture> BACKGROUND_TEXTURE
             = new AssetDescriptor<Texture>("background.png", Texture.class);
 
@@ -133,6 +136,7 @@ public class Assets {
         manager.load(GAMEOVER_TEXTURE);
         manager.load(WIN_SOUND);
         manager.load(LOST_SOUND);
+        manager.load(SPLASH_ATLAS);
     }
 
     public static void afterLoaded() {

@@ -12,14 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
-import hu.csanysoft.donto.Actors.GoodVirus;
-import hu.csanysoft.donto.Actors.Pill;
-import hu.csanysoft.donto.Actors.Popup;
-import hu.csanysoft.donto.Actors.Robot;
-import hu.csanysoft.donto.Actors.BadVirus;
-import hu.csanysoft.donto.Actors.Upgrade;
-import hu.csanysoft.donto.Actors.Virus;
-import hu.csanysoft.donto.Actors.WhiteBloodCell;
+import hu.csanysoft.donto.Actors.*;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.Donto;
@@ -104,13 +97,13 @@ public class GameStage extends MyStage {
                 //VÍRUS  VÍRUSSAL
                 for(Actor virus : getActors().toArray()) {
                     if(actor instanceof GoodVirus && virus instanceof BadVirus) {
-                        if(((GoodVirus) actor).overlaps((BadVirus) virus)) actor.remove();
+                        if(((GoodVirus) actor).overlaps((BadVirus) virus)) spash((MyActor) actor);
                     } else if (actor instanceof BadVirus && virus instanceof GoodVirus) {
-                        if(((BadVirus) actor).overlaps((GoodVirus) virus)) virus.remove();
+                        if(((BadVirus) actor).overlaps((GoodVirus) virus)) spash((MyActor) virus);
                     }
                     if(virus instanceof Pill){
                         if(((Virus) actor).overlaps((MyActor) virus)){
-                            actor.remove();
+                            spash((MyActor) actor);
                         }
                     }
                 }
@@ -121,12 +114,9 @@ public class GameStage extends MyStage {
                     if(overlappedVirus instanceof GoodVirus && !robot.hasShield) die();
                     else if(overlappedVirus instanceof BadVirus) {
                         if(((BadVirus) overlappedVirus).needsABetterWeaponToDestroy && !robot.hasWeaponUpgrade) {
-                            robot.remove();
+                            die();
                         } else {
-                            overlappedVirus.die();
-                            long f = Assets.manager.get(Assets.SPLASH_SOUND).play();
-                            Assets.manager.get(Assets.SPLASH_SOUND).setVolume(f, 40);
-                            overlappedVirus.remove();
+                            spash(overlappedVirus);
                         }
 
                     }
@@ -227,6 +217,8 @@ public class GameStage extends MyStage {
         super.dispose();
     }
 
-
-
+    public void spash(MyActor a){
+        addActor(new Spash(a));
+        a.remove();
+    }
 }

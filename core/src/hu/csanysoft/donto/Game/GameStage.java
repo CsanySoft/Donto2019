@@ -32,7 +32,7 @@ public class GameStage extends MyStage {
 
     public boolean left = false, right = false, forward = false, won = false;
     Robot robot;
-    OneSpriteStaticActor background;
+    OneSpriteStaticActor background, closestArrow;
     MovingBackground waterBackground;
     public static int level = 1;
     public int badVirusCount, goodVirusCount;
@@ -72,6 +72,10 @@ public class GameStage extends MyStage {
         addActor(robot);
         robot.setPosition(WORLD_BOUND_X/2, WORLD_BOUND_Y/2);
         robot.setZIndex(10);
+        closestArrow = new OneSpriteStaticActor(Assets.manager.get(Assets.NAVIARROW_TEXTURE));
+        closestArrow.setSize(120, 120);
+        closestArrow.setOrigin(60,60);
+        addActor(closestArrow);
         //HÁTTÉR
         background = new OneSpriteStaticActor(Assets.manager.get(Assets.BACKGROUND_TEXTURE));
         background.setSize(WORLD_BOUND_X, WORLD_BOUND_Y);
@@ -118,7 +122,30 @@ public class GameStage extends MyStage {
             if (right || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 robot.rotateBy(-(robot.baseSpeed + robot.speedUpgrade / 2));
             }
+
         }
+        if(!robot.isVisible() || won)closestArrow.setVisible(false);
+        closestArrow.setPosition(robot.getX()-33, robot.getY()-33);
+        float min = 1000;
+        BadVirus closest = null;
+        for(Actor actor : getActors()){
+            if(actor instanceof BadVirus){
+                float distance = (float)Math.sqrt(Math.pow(Math.abs(robot.getX() - actor.getX()), 2)+Math.pow(Math.abs(robot.getY() - actor.getY()), 2));
+                if(distance < min){
+                    min = distance;
+                    closest = (BadVirus)actor;
+                }
+            }
+        }
+        if(closest!= null){
+            closestArrow.setRotation((float)Math.toDegrees(Math.atan2((closest.getY()-robot.getY()),(closest.getX()-robot.getX())))-90);
+            //System.out.println("CLOSEST: "+closest.getX()+" - "+closest.getY());
+            //System.out.println("PLAYER: "+robot.getX()+" - "+robot.getY());
+            System.out.println("DIFF x:"+(closest.getX()-robot.getX())+" y:"+(closest.getY()-robot.getY())+" rotate: "+Math.toDegrees(Math.atan2((closest.getY()-robot.getY()),(closest.getX()-robot.getX()))));
+        }
+
+
+
         //KARAKTER MOZGÁSA VÉGE
 
         //ÜTKÖZÉSVIZSGÁLAT

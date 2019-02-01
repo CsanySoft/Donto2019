@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.csanysoft.donto.Actors.BadVirus;
 import hu.csanysoft.donto.Actors.GoodVirus;
+import hu.csanysoft.donto.Actors.MovingBackground;
 import hu.csanysoft.donto.Game.GameScreen;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
@@ -28,6 +29,7 @@ public class MenuStage extends MyStage {
             addActor(new GoodVirus());
             addActor(new BadVirus());
         }
+        addActor(new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE),Globals.WORLD_WIDTH + 100, Globals.WORLD_HEIGHT + 100, 0, 0, 100));
     }
 
     public void init() {

@@ -11,6 +11,7 @@ import hu.csanysoft.donto.Game.GameScreen;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.Donto;
+import hu.csanysoft.donto.MyBaseClasses.MyTextButton;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyStage;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 
@@ -30,14 +31,13 @@ public class MenuStage extends MyStage {
                 setRotation((float) (Math.sin(elapsedTime)*10));
             }
         }; */
-        OneSpriteStaticActor start = new OneSpriteStaticActor(Assets.manager.get(Assets.START)){
+        MyTextButton start = new MyTextButton("Start"){
             @Override
             public void init() {
                 super.init();
                 addListener(new InputListener(){
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                        setTexture(Assets.manager.get(Assets.START_DOWN));
                         return true;
                     }
 
@@ -50,14 +50,13 @@ public class MenuStage extends MyStage {
             }
         };
 
-        OneSpriteStaticActor exit = new OneSpriteStaticActor(Assets.manager.get(Assets.EXIT)){
+        MyTextButton exit = new MyTextButton("Exit"){
             @Override
             public void init() {
                 super.init();
                 addListener(new InputListener(){
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                        setTexture(Assets.manager.get(Assets.EXIT_DOWN));
                         return true;
                     }
 
@@ -92,22 +91,22 @@ public class MenuStage extends MyStage {
 
        // addActor(logo);
        // addActor(spiral);
+        // addActor(tutorial);
         addActor(start);
-       // addActor(tutorial);
         addActor(exit);
 
-        start.magnify(2);
+        //start.magnify(2);
         //tutorial.magnify(2);
-        exit.magnify(2);
+        //exit.magnify(2);
        // spiral.magnify(2);
 
-        start.setPositionCenterOfActorToCenterOfViewport();
-        exit.setPositionCenterOfActorToCenterOfViewport();
+        start.setPosition(Globals.WORLD_WIDTH/2-start.getWidth()/2, 600);
+        exit.setPosition(Globals.WORLD_WIDTH/2-start.getWidth()/2, 600);
         //tutorial.setPositionCenterOfActorToCenterOfViewport();
         //logo.setPositionCenterOfActorToCenterOfViewport();
 
        // tutorial.changePosition(+400, +200);
-        exit.changePosition(-400, -200);
+        exit.changePosition(0, -200);
         //logo.changePosition(-200, +200);
 
        // spiral.setZIndex(10);

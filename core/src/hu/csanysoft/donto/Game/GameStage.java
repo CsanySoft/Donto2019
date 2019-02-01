@@ -53,6 +53,7 @@ public class GameStage extends MyStage {
 
     @Override
     public void init() {
+        Gdx.input.setCatchBackKey(true);
         //PLAYER HOZZÁADÁSA
         robot = new Robot(50,50);
         addActor(robot);
@@ -192,7 +193,9 @@ public class GameStage extends MyStage {
         if(keyCode == Input.Keys.F){
             robot.addUpgrade(Upgrade.WEAPON);
         }
-
+        if(keyCode == Input.Keys.BACK || keyCode == Input.Keys.ESCAPE){
+            game.setScreenBackByStackPop();
+        }
 
         return super.keyDown(keyCode);
     }

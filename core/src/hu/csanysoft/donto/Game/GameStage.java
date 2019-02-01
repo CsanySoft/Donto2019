@@ -34,7 +34,6 @@ public class GameStage extends MyStage {
 
     public GameStage(Donto game) {
         super(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
-
         addActor(new BadVirus());
     }
 
@@ -48,7 +47,8 @@ public class GameStage extends MyStage {
         background = new OneSpriteStaticActor(Assets.manager.get(Assets.BACKGROUND_TEXTURE));
         //HÁTTÉR
         background.setSize(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT);
-        addActor(background);
+        background.setZIndex(0);
+        //addActor(background);
     }
 
     @Override

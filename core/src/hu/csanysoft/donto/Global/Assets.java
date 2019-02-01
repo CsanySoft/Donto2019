@@ -55,6 +55,9 @@ public class Assets {
     public static final AssetDescriptor<TextureAtlas> MOSQUITO_TEXTURE
             = new AssetDescriptor<TextureAtlas>("actors/mosquito.atlas", TextureAtlas.class);
 
+    public static final AssetDescriptor<TextureAtlas> ROBOT_TEXTURE
+            = new AssetDescriptor<TextureAtlas>("animations/android.atlas", TextureAtlas.class);
+
     public static final AssetDescriptor<TextureAtlas> EXPLOSION_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/explosion2.atlas", TextureAtlas.class);
 
@@ -81,6 +84,7 @@ public class Assets {
         manager.load(EXIT);
         manager.load(EXIT_DOWN);
         manager.load(MOSQUITO_TEXTURE);
+        manager.load(ROBOT_TEXTURE);
         manager.load(BACKGROUND_TEXTURE);
         manager.load(EXPLOSION_ATLAS);
     }

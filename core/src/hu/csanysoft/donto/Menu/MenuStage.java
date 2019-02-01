@@ -14,6 +14,7 @@ import hu.csanysoft.donto.Donto;
 import hu.csanysoft.donto.MyBaseClasses.MyTextButton;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyStage;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanysoft.donto.Tutorial.TutorialScreen;
 
 public class MenuStage extends MyStage {
 
@@ -44,6 +45,25 @@ public class MenuStage extends MyStage {
                     @Override
                     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                         game.setScreen(new GameScreen(game), true);
+                        super.touchUp(event, x, y, pointer, button);
+                    }
+                });
+            }
+        };
+
+        MyTextButton tutorial = new MyTextButton("Tutorial") {
+            @Override
+            protected void init() {
+                super.init();
+                addListener(new InputListener() {
+                    @Override
+                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        return true;
+                    }
+
+                    @Override
+                    public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                        game.setScreen(new TutorialScreen(game),true);
                         super.touchUp(event, x, y, pointer, button);
                     }
                 });
@@ -91,7 +111,7 @@ public class MenuStage extends MyStage {
 
        // addActor(logo);
        // addActor(spiral);
-        // addActor(tutorial);
+        addActor(tutorial);
         addActor(start);
         addActor(exit);
 
@@ -102,10 +122,10 @@ public class MenuStage extends MyStage {
 
         start.setPosition(Globals.WORLD_WIDTH/2-start.getWidth()/2, 600);
         exit.setPosition(Globals.WORLD_WIDTH/2-start.getWidth()/2, 600);
-        //tutorial.setPositionCenterOfActorToCenterOfViewport();
+        tutorial.setPosition(Globals.WORLD_WIDTH/2-start.getWidth()/2, 600);
         //logo.setPositionCenterOfActorToCenterOfViewport();
 
-       // tutorial.changePosition(+400, +200);
+        tutorial.changePosition(0, -100);
         exit.changePosition(0, -200);
         //logo.changePosition(-200, +200);
 

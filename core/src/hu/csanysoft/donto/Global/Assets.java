@@ -98,6 +98,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> GAMEOVER_TEXTURE
             = new AssetDescriptor<Texture>("gameover.png", Texture.class);
 
+    public static final AssetDescriptor<Texture> WHITEBLOODCELL_TEXTURE
+            = new AssetDescriptor<Texture>("animations/whiteBloodCells.png", Texture.class);
+
     public static final AssetDescriptor<Sound> SPLASH_SOUND
             = new AssetDescriptor<Sound>("sound/splash.mp3", Sound.class);
 
@@ -127,6 +130,7 @@ public class Assets {
         manager.load(EXIT_DOWN);
         manager.load(ANTIPILL_TEXTURE);
         manager.load(WHITEBLOOD_ATLAS);
+        manager.load(WHITEBLOODCELL_TEXTURE);
         //Ellenfelek
         manager.load(BADVIRUS_TEXTURE);
         manager.load(GOODVIRUS_TEXTURE);

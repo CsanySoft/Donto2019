@@ -20,6 +20,8 @@ public class ControlStage extends MyStage {
     OneSpriteStaticActor left, right, forward;
     MyLabel speedUpgrades;
     MyLabel shieldTime;
+    MyLabel goodViruses;
+    MyLabel badViruses;
     OneSpriteStaticActor gameover;
 
     public ControlStage(Donto game, GameStage gs) {
@@ -133,6 +135,32 @@ public class ControlStage extends MyStage {
                 if(gameStage.robot.hasShield){
                     setText("shield time left: "+((int)(gameStage.robot.shieldTimeLeft*10) / 10.0));
                 }else setText("");
+            }
+        });
+        addActor(goodViruses = new MyLabel("", Donto.getColorLabelStyle(Color.WHITE)){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(10, Globals.WORLD_HEIGHT-getHeight()-110);
+            }
+
+            @Override
+            public void act(float delta) {
+                super.act(delta);
+                    setText("good viruses left: "+gameStage.goodVirusCount);
+            }
+        });
+        addActor(badViruses = new MyLabel("", Donto.getColorLabelStyle(Color.WHITE)){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(10, Globals.WORLD_HEIGHT-getHeight()-160);
+            }
+
+            @Override
+            public void act(float delta) {
+                super.act(delta);
+                    setText("bad viruses left: "+gameStage.badVirusCount);
             }
         });
     }

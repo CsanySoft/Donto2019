@@ -9,8 +9,8 @@ import hu.csanysoft.donto.MyBaseClasses.Scene2D.OffsetSprite;
 public class Robot extends MultiSpriteActor {
 
     AnimatedOffsetSprite body;
-    AnimatedOffsetSprite trail;
-    OffsetSprite shieldSprite;
+    AnimatedOffsetSprite trail, trail2, trail3;
+    AnimatedOffsetSprite shieldSprite;
 
     public final int baseSpeed = 2;
     public static int speedUpgrade = 0;
@@ -26,10 +26,17 @@ public class Robot extends MultiSpriteActor {
         body = new AnimatedOffsetSprite(Assets.manager.get(Assets.ROBOT_ATLAS), 0, 0, 50, 75);
         addSprite(body);
         trail = new AnimatedOffsetSprite(Assets.manager.get(Assets.BUBBLE_ATLAS), 17, -20, 15, 25);
-        trail.setFps(90);
+        trail2 = new AnimatedOffsetSprite(Assets.manager.get(Assets.BUBBLE_ATLAS), 7, -30, 15, 25);
+        trail3 = new AnimatedOffsetSprite(Assets.manager.get(Assets.BUBBLE_ATLAS), 27, -35, 15, 25);
+        trail.setFps(50 + baseSpeed+speedUpgrade);
+        trail2.setFps(35 + baseSpeed+speedUpgrade);
+        trail3.setFps(65 + baseSpeed+speedUpgrade);
         addSprite(trail);
-        shieldSprite = new OffsetSprite(Assets.manager.get(Assets.EXIT), -25,-20,100,100);
+        addSprite(trail2);
+        addSprite(trail3);
+        shieldSprite = new AnimatedOffsetSprite(Assets.manager.get(Assets.SHIELD_ATLAS),-25,-20,100,100);
         addSprite(shieldSprite);
+        shieldSprite.setFps(15);
         addBaseCollisionRectangleShape();
         addCollisionShape("fej", new MyRectangle(50,25, 0,50, 25,25));
         if(hasWeaponUpgrade) addSprite(new OffsetSprite(Assets.manager.get(Assets.CHIPWEAPON_TEXTURE), 10, 20, 30,30));
@@ -57,12 +64,21 @@ public class Robot extends MultiSpriteActor {
     @Override
     public void act(float delta) {
         super.act(delta);
+
+        trail.setFps(50 + baseSpeed+speedUpgrade*30);
+        trail2.setFps(35 + baseSpeed+speedUpgrade*30);
+        trail3.setFps(65 + baseSpeed+speedUpgrade*30);
+
         if(lastX != getX() || lastY != getY()){
             trail.setVisible(true);
+            trail2.setVisible(true);
+            trail3.setVisible(true);
             body.start();
         }
         else{
             trail.setVisible(false);
+            trail2.setVisible(false);
+            trail3.setVisible(false);
             body.stop();
         }
         lastX = getX();

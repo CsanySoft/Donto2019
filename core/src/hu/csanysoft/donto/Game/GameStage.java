@@ -31,7 +31,7 @@ public class GameStage extends MyStage {
     Robot robot;
     OneSpriteStaticActor background;
     public static int level = 1;
-    public int badVirusCount = 0;
+    public int badVirusCount, goodVirusCount;
     public float upgradeTimer = 0;
 
     public static int WORLD_BOUND_X = 1920, WORLD_BOUND_Y = 1080;
@@ -43,6 +43,7 @@ public class GameStage extends MyStage {
             addActor(new BadVirus());
             //addActor(new BadVirus());
             addActor(new GoodVirus());
+            badVirusCount++; goodVirusCount++;
         }
     }
 
@@ -61,11 +62,19 @@ public class GameStage extends MyStage {
         background.setPositionCenterOfActorToCenterOfViewport();
         addActor(background);
         background.setZIndex(0);
+        //PIRULÁK SPAWNOLÁSA
         int pillCount = (int)Math.floor(level/5.0);
         for(int i = 0; i < pillCount; i++){
             addActor(new Pill(random(100,WORLD_BOUND_X-100), random(100, WORLD_BOUND_Y-100), random(0,365)));
         }
-        addActor(new WhiteBloodCell(robot.getX()+300, robot.getY()+300, robot));
+        //FEHÉRVÉRSEJTEK SPAWNOLÁSA
+        int whiteCellCount = (int)Math.floor(level/10.0);
+        for (int i = 0; i < whiteCellCount; i++) {
+            WhiteBloodCell cell = new WhiteBloodCell(random(150, WORLD_BOUND_X-150), random(150, WORLD_BOUND_Y-150), robot);
+            addActor(cell);
+            while(cell.getX() > WORLD_BOUND_X/2-200 && cell.getX() < WORLD_BOUND_X/2+200) cell.setX(random(150, WORLD_BOUND_X-150));
+            while(cell.getY() > WORLD_BOUND_Y/2-200 && cell.getY() < WORLD_BOUND_Y/2+200) cell.setY(random(150, WORLD_BOUND_Y-150));
+        }
     }
 
     @Override
@@ -97,13 +106,20 @@ public class GameStage extends MyStage {
                 //VÍRUS  VÍRUSSAL
                 for(Actor virus : getActors().toArray()) {
                     if(actor instanceof GoodVirus && virus instanceof BadVirus) {
-                        if(((GoodVirus) actor).overlaps((BadVirus) virus)) spash((MyActor) actor);
+                        if(((GoodVirus) actor).overlaps((BadVirus) virus)) {
+                            spash((MyActor) actor);
+                            goodVirusCount--;
+                        }
                     } else if (actor instanceof BadVirus && virus instanceof GoodVirus) {
-                        if(((BadVirus) actor).overlaps((GoodVirus) virus)) spash((MyActor) virus);
+                        if(((BadVirus) actor).overlaps((GoodVirus) virus)) {
+                            spash((MyActor) virus);
+                            goodVirusCount--;
+                        }
                     }
                     if(virus instanceof Pill){
                         if(((Virus) actor).overlaps((MyActor) virus)){
                             spash((MyActor) actor);
+                            goodVirusCount--;
                         }
                     }
                 }
@@ -116,6 +132,8 @@ public class GameStage extends MyStage {
                         if(((BadVirus) overlappedVirus).needsABetterWeaponToDestroy && !robot.hasWeaponUpgrade) {
                             die();
                         } else {
+                            overlappedVirus.die();
+                            badVirusCount--;
                             spash(overlappedVirus);
                         }
 
@@ -150,7 +168,7 @@ public class GameStage extends MyStage {
 
             //ROBOT A FEHÉR SEJTTEL
             else if (actor instanceof WhiteBloodCell){
-                if(robot.overlaps((MyActor) actor)){
+                if(robot.overlaps((MyActor) actor) && !robot.hasShield){
                     die();
                 }
             }
@@ -158,10 +176,10 @@ public class GameStage extends MyStage {
         //ÜTKÖZÉSVIZSGÁLAT VÉGE
 
         //BADVIRUS SZÁMOLÁS
-        badVirusCount = 0; //BEÁLLÍTANI NULLÁRA, FORCIKLUSBAN SZÁMOL
-        for(Actor actor:getActors()) {
+        //badVirusCount = 0; //BEÁLLÍTANI NULLÁRA, FORCIKLUSBAN SZÁMOL
+       /* for(Actor actor:getActors()) {
             if(actor instanceof BadVirus) badVirusCount++;
-        }
+        } */
         if(badVirusCount == 0) {
             System.out.println("Következő szint");
             Assets.manager.get(Assets.WIN_SOUND).play();
@@ -171,6 +189,8 @@ public class GameStage extends MyStage {
         }
         //BADVIRUS SZÁMOLÁS VÉGE
 
+
+        if(goodVirusCount == 0) die();
         setCameraZoomXY(robot.getX()+robot.getWidth()/2, robot.getY()+robot.getHeight()/2, 0.6f); //KAMERAMOZGÁS
 
         if(upgradeTimer >= 10) {
@@ -199,9 +219,18 @@ public class GameStage extends MyStage {
         if(keyCode == Input.Keys.F){
             robot.addUpgrade(Upgrade.WEAPON);
         }
+        if(keyCode == Input.Keys.W){
+            WhiteBloodCell cell = new WhiteBloodCell(random(150, WORLD_BOUND_X-150), random(150, WORLD_BOUND_Y-150), robot);
+            addActor(cell);
+            while(cell.getX() > WORLD_BOUND_X/2-200 && cell.getX() < WORLD_BOUND_X/2+200) cell.setX(random(150, WORLD_BOUND_X-150));
+            while(cell.getY() > WORLD_BOUND_Y/2-200 && cell.getY() < WORLD_BOUND_Y/2+200) cell.setY(random(150, WORLD_BOUND_Y-150));
+        }
+
+
         if(keyCode == Input.Keys.BACK || keyCode == Input.Keys.ESCAPE){
             game.setScreenBackByStackPop();
         }
+
 
         return super.keyDown(keyCode);
     }

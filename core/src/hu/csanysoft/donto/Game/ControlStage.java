@@ -19,6 +19,7 @@ public class ControlStage extends MyStage {
     GameStage gameStage;
     OneSpriteStaticActor left, right, forward;
     MyLabel speedUpgrades;
+    MyLabel shieldTime;
 
     public ControlStage(Donto game, GameStage gs) {
         super(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
@@ -92,7 +93,7 @@ public class ControlStage extends MyStage {
                 });
             }
         });
-        addActor(speedUpgrades = new MyLabel("sebesség fejlesztések: 0", Donto.getColorLabelStyle(Color.WHITE)){
+        addActor(speedUpgrades = new MyLabel("speed upgrades: 0", Donto.getColorLabelStyle(Color.WHITE)){
             @Override
             public void init() {
                 super.init();
@@ -102,15 +103,21 @@ public class ControlStage extends MyStage {
             @Override
             public void act(float delta) {
                 super.act(delta);
-                setText("sebesség fejlesztések: "+gameStage.robot.speedUpgrade);
+                setText("speed upgrades: "+gameStage.robot.speedUpgrade);
+            }
+        });
+        addActor(shieldTime = new MyLabel("", Donto.getColorLabelStyle(Color.WHITE)){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(10, Globals.WORLD_HEIGHT-getHeight()-10);
+            }
+
+            @Override
+            public void act(float delta) {
+                super.act(delta);
+                setText(gameStage.robot.shieldTimeLeft != 0 ? String.format("Shield time left: %.0f s", gameStage.robot.shieldTimeLeft) : "");
             }
         });
     }
-
-    @Override
-    public void act(float delta) {
-        super.act(delta);
-    }
-
-
 }

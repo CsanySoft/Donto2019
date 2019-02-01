@@ -51,11 +51,12 @@ public class GameStage extends MyStage {
         //PLAYER HOZZÁADÁSA
         robot = new Robot(50,50);
         addActor(robot);
-        robot.setPositionCenterOfActorToCenterOfViewport();
+        robot.setPosition(Globals.WORLD_WIDTH/2, Globals.WORLD_HEIGHT/2);
         robot.setZIndex(10);
         //HÁTTÉR
         background = new OneSpriteStaticActor(Assets.manager.get(Assets.BACKGROUND_TEXTURE));
-        background.setSize(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT);
+        background.setSize(Globals.WORLD_WIDTH+1000, Globals.WORLD_HEIGHT+990);
+        background.moveBy(-500,-500);
         addActor(background);
         background.setZIndex(0);
     }
@@ -64,7 +65,6 @@ public class GameStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         upgradeTimer+=delta;
-
         //KARAKTER MOZGÁSA
         if(forward || Gdx.input.isKeyPressed(Input.Keys.UP)){
             double rotation = Math.toRadians(robot.getRotation()+90);

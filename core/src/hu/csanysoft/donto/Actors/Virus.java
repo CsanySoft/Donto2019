@@ -6,19 +6,25 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import hu.csanysoft.donto.Game.GameStage;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
+import hu.csanysoft.donto.MyBaseClasses.Scene2D.AnimatedOffsetSprite;
+import hu.csanysoft.donto.MyBaseClasses.Scene2D.MultiSpriteActor;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteAnimatedActor;
 
-public class Virus extends OneSpriteAnimatedActor {
+public class Virus extends MultiSpriteActor {
 
     float dest[];
     GameStage gameStage;
+    AnimatedOffsetSprite tailSprite;
 
-    public Virus(TextureAtlas textureAtlas) {
-        super(textureAtlas);
+    public Virus() {
+        super(64,64);
         dest = new float[2];
         setSize(64, 64);
         newDest();
         addBaseCollisionRectangleShape();
+        tailSprite = new AnimatedOffsetSprite(Assets.manager.get(Assets.VIRUSTAIL_ATLAS), 22, -50, 20, 50);
+        addSprite(tailSprite);
+        tailSprite.setFps(5);
     }
 
     public void newDest() {

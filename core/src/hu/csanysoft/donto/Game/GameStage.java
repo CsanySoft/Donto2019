@@ -198,6 +198,8 @@ public class GameStage extends MyStage {
         }
         //BADVIRUS SZÁMOLÁS VÉGE
 
+
+        if(goodVirusCount == 0) die();
         setCameraZoomXY(robot.getX()+robot.getWidth()/2, robot.getY()+robot.getHeight()/2, 0.6f); //KAMERAMOZGÁS
 
         if(upgradeTimer >= 10) {

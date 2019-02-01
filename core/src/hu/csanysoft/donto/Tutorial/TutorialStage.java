@@ -112,7 +112,7 @@ public class TutorialStage extends MyStage {
         addActor(tutorial);
 
 
-        addActor(new MyTextButton("Vissza"){
+        addActor(new MyTextButton("Back"){
             @Override
             protected void init() {
                 super.init();

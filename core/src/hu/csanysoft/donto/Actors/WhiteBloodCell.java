@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
+import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyCircle;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteAnimatedActor;
 
 import static com.badlogic.gdx.math.MathUtils.random;
@@ -18,11 +19,12 @@ public class WhiteBloodCell extends OneSpriteAnimatedActor {
     float maxSpeed = .4f;
 
     public WhiteBloodCell(float x, float y, Robot robot) {
-        super(Assets.manager.get(Assets.SPLASH_ATLAS));
-        setSize(150,150);
+        super(Assets.manager.get(Assets.WHITEBLOOD_ATLAS));
+        setFps(15);
+        setSize(140,140);
         setPosition(x,y);
         this.robot = robot;
-        addBaseCollisionCircleShape();
+        addCollisionShape("karika", new MyCircle(55, 15, 15, 70,70));
     }
 
     @Override

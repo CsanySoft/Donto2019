@@ -162,7 +162,7 @@ abstract public class MyStage extends Stage implements InitableInterface {
         cameraZoomSpeed = speed;
     }
 
-    @Deprecated
+
     public void setCameraMoveToXY(float x, float y, float zoom, float zoomSpeed, float moveSpeed)
     {
         cameraTargetX = x;

@@ -23,6 +23,7 @@ import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyActor;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyStage;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteActor;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanysoft.donto.MyBaseClasses.UI.MyLabel;
 
 import static hu.csanysoft.donto.Global.Globals.random;
 
@@ -35,11 +36,12 @@ public class GameStage extends MyStage {
     public static int level = 1;
     public int badVirusCount, goodVirusCount;
     public float upgradeTimer = 0;
+    public String halalOka;
 
     public static int WORLD_BOUND_X = 1920, WORLD_BOUND_Y = 1080;
 
 
-    public GameStage(Donto game) {
+    public GameStage(Donto game, boolean newGame) {
         super(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         for (int i = 0; i < level; i++) {
             addActor(new BadVirus());
@@ -47,7 +49,17 @@ public class GameStage extends MyStage {
             addActor(new GoodVirus());
             badVirusCount++; goodVirusCount++;
         }
+        if(newGame){
+            robot.hasShield = false;
+            robot.shieldTimeLeft = 0;
+            robot.hasWeaponUpgrade = false;
+            robot.speedUpgrade = 0;
+            level = 1;
+        }
+
     }
+
+
 
 
     @Override
@@ -84,19 +96,23 @@ public class GameStage extends MyStage {
         super.act(delta);
         upgradeTimer+=delta;
         //KARAKTER MOZGÁSA
-        if(forward || Gdx.input.isKeyPressed(Input.Keys.UP)){
-            double rotation = Math.toRadians(robot.getRotation()+90);
-            robot.moveBy((robot.baseSpeed+robot.speedUpgrade)*(float)Math.cos(rotation), (robot.baseSpeed+robot.speedUpgrade)*(float)Math.sin(rotation));
-            if(robot.getX() < 0) robot.setX(0);
-            if(robot.getX()+robot.getWidth() > WORLD_BOUND_X) robot.setX(WORLD_BOUND_X-robot.getWidth());
-            if(robot.getY() < 0) robot.setY(0);
-            if(robot.getY()+robot.getHeight() > WORLD_BOUND_Y) robot.setY(WORLD_BOUND_Y-robot.getHeight());
-        }
-        if(left  || Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            robot.rotateBy(robot.baseSpeed+robot.speedUpgrade/2);
-        }
-        if(right  || Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            robot.rotateBy(-(robot.baseSpeed+robot.speedUpgrade/2));
+        if(robot.isVisible()) {
+            if (forward || Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                double rotation = Math.toRadians(robot.getRotation() + 90);
+                robot.moveBy((robot.baseSpeed + robot.speedUpgrade) * (float) Math.cos(rotation), (robot.baseSpeed + robot.speedUpgrade) * (float) Math.sin(rotation));
+                if (robot.getX() < 0) robot.setX(0);
+                if (robot.getX() + robot.getWidth() > WORLD_BOUND_X)
+                    robot.setX(WORLD_BOUND_X - robot.getWidth());
+                if (robot.getY() < 0) robot.setY(0);
+                if (robot.getY() + robot.getHeight() > WORLD_BOUND_Y)
+                    robot.setY(WORLD_BOUND_Y - robot.getHeight());
+            }
+            if (left || Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                robot.rotateBy(robot.baseSpeed + robot.speedUpgrade / 2);
+            }
+            if (right || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                robot.rotateBy(-(robot.baseSpeed + robot.speedUpgrade / 2));
+            }
         }
         //KARAKTER MOZGÁSA VÉGE
 
@@ -129,10 +145,10 @@ public class GameStage extends MyStage {
 
                 //ROBOT A VÍRUSSAL
                 if(robot.overlaps(overlappedVirus)) {
-                    if(overlappedVirus instanceof GoodVirus && !robot.hasShield) die();
+                    if(overlappedVirus instanceof GoodVirus && !robot.hasShield) die("You tried to kill a good virus");
                     else if(overlappedVirus instanceof BadVirus) {
                         if(((BadVirus) overlappedVirus).needsABetterWeaponToDestroy && !robot.hasWeaponUpgrade) {
-                            die();
+                            die("You tried to kill a shielded virus without a weapon");
                         } else {
                             overlappedVirus.die();
                             badVirusCount--;
@@ -171,7 +187,7 @@ public class GameStage extends MyStage {
             //ROBOT A FEHÉR SEJTTEL
             else if (actor instanceof WhiteBloodCell){
                 if(robot.overlaps((MyActor) actor) && !robot.hasShield){
-                    die();
+                    die("You got caught by a white blood cell");
                 }
             }
         }
@@ -191,15 +207,19 @@ public class GameStage extends MyStage {
                 @Override
                 public void run() {
                     level++;
-                    game.setScreen(new GameScreen(game));
+                    game.setScreen(new GameScreen(game, false));
                 }
             }, 2);
         }
         //BADVIRUS SZÁMOLÁS VÉGE
 
 
-        if(goodVirusCount == 0) die();
-        setCameraZoomXY(robot.getX()+robot.getWidth()/2, robot.getY()+robot.getHeight()/2, 0.6f); //KAMERAMOZGÁS
+        if(goodVirusCount == 0) die("There are no more good viruses");
+        if(robot.isVisible())setCameraZoomXY(robot.getX()+robot.getWidth()/2, robot.getY()+robot.getHeight()/2, 0.6f); //KAMERAMOZGÁS
+        else{
+            setCameraMoveToXY(WORLD_BOUND_X / 2, WORLD_BOUND_Y / 2 + 1, 1, .1f, 100);
+
+        }
 
         if(upgradeTimer >= 10) {
             upgradeTimer = 0;
@@ -208,12 +228,16 @@ public class GameStage extends MyStage {
         }
     }
 
-    public void die() {
+    public void die(String s) {
         if(!robot.isVisible())
             return;
         robot.setVisible(false);
+        halalOka = s;
         long f = Assets.manager.get(Assets.LOST_SOUND).play();
         Assets.manager.get(Assets.LOST_SOUND).setVolume(f, 50);
+        setCameraMoveSpeed(.1f);
+
+
     }
 
     @Override

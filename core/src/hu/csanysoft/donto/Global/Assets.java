@@ -49,6 +49,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> ANTIPILL_TEXTURE
             = new AssetDescriptor<Texture>("antipill.png", Texture.class);
 
+    public static final AssetDescriptor<TextureAtlas> WHITEBLOOD_ATLAS//fehérvér sejt
+            = new AssetDescriptor<TextureAtlas>("animations/whiteBloodCellsani.atlas", TextureAtlas.class);
+
     //Ellenfelek
 
     public static final AssetDescriptor<Texture> BADVIRUS_TEXTURE
@@ -89,11 +92,20 @@ public class Assets {
     public static final AssetDescriptor<Texture> BACKGROUND_TEXTURE
             = new AssetDescriptor<Texture>("background.png", Texture.class);
 
+    public static final AssetDescriptor<Texture> BACKGROUNDWATER_TEXTURE
+            = new AssetDescriptor<Texture>("water_bg.png", Texture.class);
+
     public static final AssetDescriptor<Texture> ARROW_TEXTURE
             = new AssetDescriptor<Texture>("ui/arrow.png", Texture.class);
 
     public static final AssetDescriptor<Texture> GAMEOVER_TEXTURE
             = new AssetDescriptor<Texture>("gameover.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> WHITEBLOODCELL_TEXTURE
+            = new AssetDescriptor<Texture>("animations/whiteBloodCells.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> ANDROID_TEXTURE
+            = new AssetDescriptor<Texture>("actors/android.png", Texture.class);
 
     public static final AssetDescriptor<Texture> WON_TEXTURE
             = new AssetDescriptor<Texture>("won.png", Texture.class);
@@ -126,6 +138,9 @@ public class Assets {
         manager.load(EXIT);
         manager.load(EXIT_DOWN);
         manager.load(ANTIPILL_TEXTURE);
+        manager.load(WHITEBLOOD_ATLAS);
+        manager.load(WHITEBLOODCELL_TEXTURE);
+        manager.load(ANDROID_TEXTURE);
         //Ellenfelek
         manager.load(BADVIRUS_TEXTURE);
         manager.load(GOODVIRUS_TEXTURE);
@@ -139,6 +154,7 @@ public class Assets {
 
         manager.load(ROBOT_ATLAS);
         manager.load(BACKGROUND_TEXTURE);
+        manager.load(BACKGROUNDWATER_TEXTURE);
         manager.load(EXPLOSION_ATLAS);
         manager.load(ARROW_TEXTURE);
         manager.load(SPLASH_SOUND);

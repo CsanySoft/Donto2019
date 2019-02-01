@@ -11,9 +11,9 @@ public class GameScreen extends MyScreen {
     ControlStage controlStage;
     InputMultiplexer inputMultiplexer;
 
-    public GameScreen(Donto game) {
+    public GameScreen(Donto game, boolean newGame) {
         super(game);
-        stage = new GameStage(game);
+        stage = new GameStage(game, newGame);
         controlStage = new ControlStage(game, stage);
         inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(stage);

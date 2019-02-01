@@ -86,6 +86,13 @@ public class GameStage extends MyStage {
                     }
                 }
             }
+            else if (actor instanceof Upgrade) {
+                Upgrade overlappedUpgrade = (Upgrade)actor;
+                if(robot.overlaps(overlappedUpgrade)) {
+                    robot.addUpgrade(overlappedUpgrade.getType());
+                    overlappedUpgrade.remove();
+                }
+            }
         }
         //ÜTKÖZÉSVIZSGÁLAT VÉGE
 

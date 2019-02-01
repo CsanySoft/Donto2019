@@ -31,6 +31,23 @@ public class Robot extends MultiSpriteActor {
         addBaseCollisionRectangleShape();
     }
 
+    public void addUpgrade(int type) {
+        switch (type) {
+            case 0: {
+                hasWeaponUpgrade = true;
+                break;
+            }
+            case 1: {
+                speedUpgrade++;
+                break;
+            }
+            case 2: {
+                hasShield = true;
+                break;
+            }
+        }
+    }
+
     @Override
     public void act(float delta) {
         super.act(delta);

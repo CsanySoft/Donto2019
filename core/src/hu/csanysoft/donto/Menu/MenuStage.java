@@ -55,7 +55,7 @@ public class MenuStage extends MyStage {
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new GameScreen(game, false),true);
+                game.setScreen(new GameScreen(game, true),true);
                 super.touchUp(event, x, y, pointer, button);
             }
         });

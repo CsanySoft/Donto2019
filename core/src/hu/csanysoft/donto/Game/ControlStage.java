@@ -61,12 +61,14 @@ public class ControlStage extends MyStage {
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                         gameStage.left = true;
+                        setTexture(Assets.manager.get(Assets.ARROWDOWN_TEXTURE));
                         return super.touchDown(event, x, y, pointer, button);
                     }
 
                     @Override
                     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                         gameStage.left = false;
+                        setTexture(Assets.manager.get(Assets.ARROW_TEXTURE));
                         super.touchUp(event, x, y, pointer, button);
                     }
                 });
@@ -81,12 +83,14 @@ public class ControlStage extends MyStage {
                 addListener(new ClickListener(){
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        setTexture(Assets.manager.get(Assets.ARROWDOWN_TEXTURE));
                         gameStage.right = true;
                         return super.touchDown(event, x, y, pointer, button);
                     }
 
                     @Override
                     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                        setTexture(Assets.manager.get(Assets.ARROW_TEXTURE));
                         gameStage.right = false;
                         super.touchUp(event, x, y, pointer, button);
                     }
@@ -103,12 +107,14 @@ public class ControlStage extends MyStage {
                 addListener(new ClickListener(){
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        setTexture(Assets.manager.get(Assets.ARROWDOWN_TEXTURE));
                         gameStage.forward = true;
                         return super.touchDown(event, x, y, pointer, button);
                     }
 
                     @Override
                     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                        setTexture(Assets.manager.get(Assets.ARROW_TEXTURE));
                         gameStage.forward = false;
                         super.touchUp(event, x, y, pointer, button);
                     }

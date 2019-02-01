@@ -101,7 +101,7 @@ public class GameStage extends MyStage {
         super.act(delta);
         upgradeTimer+=delta;
         //KARAKTER MOZGÁSA
-        if(robot.isVisible()) {
+        if(robot.isVisible() & !won) {
             if (forward || Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 double rotation = Math.toRadians(robot.getRotation() + 90);
                 robot.moveBy((robot.baseSpeed + robot.speedUpgrade) * (float) Math.cos(rotation), (robot.baseSpeed + robot.speedUpgrade) * (float) Math.sin(rotation));
@@ -150,7 +150,7 @@ public class GameStage extends MyStage {
                 //VÍRUS A VÍRUSSAL VÉGE
 
                 //ROBOT A VÍRUSSAL
-                if(robot.overlaps(overlappedVirus)) {
+                if(robot.overlaps(overlappedVirus) & !won) {
                     if(overlappedVirus instanceof GoodVirus && !robot.hasShield) die("You tried to kill a good virus");
                     else if(overlappedVirus instanceof BadVirus) {
                         if(((BadVirus) overlappedVirus).needsABetterWeaponToDestroy && !robot.hasWeaponUpgrade) {
@@ -169,7 +169,7 @@ public class GameStage extends MyStage {
             //ROBOT AZ UPGRADEVAL
             else if (actor instanceof Upgrade) {
                 Upgrade overlappedUpgrade = (Upgrade)actor;
-                if(robot.overlaps(overlappedUpgrade)) {
+                if(robot.overlaps(overlappedUpgrade) & !won) {
                     robot.addUpgrade(overlappedUpgrade.getType());
                     String message = "";
                     switch(overlappedUpgrade.getType()){
@@ -185,14 +185,14 @@ public class GameStage extends MyStage {
 
             //ROBOT A PIRULÁVAL
             else if (actor instanceof Pill){
-                if(robot.overlaps((MyActor) actor)) {
+                if(robot.overlaps((MyActor) actor) & !won) {
                     actor.remove();
                 }
             }
 
             //ROBOT A FEHÉR SEJTTEL
             else if (actor instanceof WhiteBloodCell){
-                if(robot.overlaps((MyActor) actor) && !robot.hasShield){
+                if(robot.overlaps((MyActor) actor) & !robot.hasShield & !won){
                     die("You got caught by a white blood cell");
                 }
             }

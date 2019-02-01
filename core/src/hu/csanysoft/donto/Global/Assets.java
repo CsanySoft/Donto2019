@@ -37,28 +37,28 @@ public class Assets {
 
     //Gombok
     public static final AssetDescriptor<Texture> START
-            = new AssetDescriptor<Texture>("buttons/start.png", Texture.class);
+            = new AssetDescriptor<Texture>("ui/buttons/start.png", Texture.class);
 
     public static final AssetDescriptor<Texture> START_DOWN
-            = new AssetDescriptor<Texture>("buttons/start_down.png", Texture.class);
+            = new AssetDescriptor<Texture>("ui/buttons/start_down.png", Texture.class);
 
     public static final AssetDescriptor<Texture> EXIT
-            = new AssetDescriptor<Texture>("buttons/exit.png", Texture.class);
+            = new AssetDescriptor<Texture>("ui/buttons/exit.png", Texture.class);
 
     public static final AssetDescriptor<Texture> EXIT_DOWN
-            = new AssetDescriptor<Texture>("buttons/exit_down.png", Texture.class);
+            = new AssetDescriptor<Texture>("ui/buttons/exit_down.png", Texture.class);
 
     public static final AssetDescriptor<Texture> TUTORIAL
-            = new AssetDescriptor<Texture>("buttons/tutorial.png", Texture.class);
+            = new AssetDescriptor<Texture>("ui/buttons/tutorial.png", Texture.class);
 
     public static final AssetDescriptor<Texture> TUTORIAL_DOWN
-            = new AssetDescriptor<Texture>("buttons/tutorial_down.png", Texture.class);
+            = new AssetDescriptor<Texture>("ui/buttons/tutorial_down.png", Texture.class);
 
     public static final AssetDescriptor<Texture> BACK
-            = new AssetDescriptor<Texture>("buttons/back.png", Texture.class);
+            = new AssetDescriptor<Texture>("ui/buttons/back.png", Texture.class);
 
     public static final AssetDescriptor<Texture> BACK_DOWN
-            = new AssetDescriptor<Texture>("buttons/back_down.png", Texture.class);
+            = new AssetDescriptor<Texture>("ui/buttons/back_down.png", Texture.class);
 
 
 
@@ -99,9 +99,6 @@ public class Assets {
 
     public static final AssetDescriptor<TextureAtlas> ROBOT_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/palyer/android.atlas", TextureAtlas.class);
-
-    public static final AssetDescriptor<TextureAtlas> EXPLOSION_ATLAS
-            = new AssetDescriptor<TextureAtlas>("animations/explosion2.atlas", TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> SPLASH_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/greenexplosion.atlas", TextureAtlas.class);
@@ -190,7 +187,6 @@ public class Assets {
         manager.load(BACKGROUND_TEXTURE);
         manager.load(BACKGROUNDWATER_TEXTURE);
 
-        manager.load(EXPLOSION_ATLAS);
         manager.load(ARROW_TEXTURE);
         manager.load(NAVIARROW_TEXTURE);
         manager.load(SPLASH_SOUND);

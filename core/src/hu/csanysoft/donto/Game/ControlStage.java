@@ -1,5 +1,6 @@
 package hu.csanysoft.donto.Game;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -17,6 +18,7 @@ public class ControlStage extends MyStage {
 
     GameStage gameStage;
     OneSpriteStaticActor left, right, forward;
+    MyLabel speedUpgrades;
 
     public ControlStage(Donto game, GameStage gs) {
         super(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
@@ -90,10 +92,25 @@ public class ControlStage extends MyStage {
                 });
             }
         });
+        addActor(speedUpgrades = new MyLabel("sebesség fejlesztések: 0", Donto.getColorLabelStyle(Color.WHITE)){
+            @Override
+            public void init() {
+                super.init();
+                setPosition(10, Globals.WORLD_HEIGHT-getHeight()-10);
+            }
+
+            @Override
+            public void act(float delta) {
+                super.act(delta);
+                setText("sebesség fejlesztések: "+gameStage.robot.speedUpgrade);
+            }
+        });
     }
 
     @Override
     public void act(float delta) {
         super.act(delta);
     }
+
+
 }

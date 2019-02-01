@@ -1,0 +1,18 @@
+tailani.png
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+0
+   rotate: false
+   xy: 0, 0
+   size: 70, 169
+   orig: 0, 0
+   offset: 0, 0
+   index: -1
+1
+   rotate: false
+   xy: 0, 169
+   size: 70, 169
+   orig: 0, 0
+   offset: 0, 0
+   index: -1

@@ -24,7 +24,7 @@ public class Upgrade extends OneSpriteStaticActor {
                 break;
             }
         }
-
+        addBaseCollisionRectangleShape();
     }
 
     public int getType() {

@@ -51,8 +51,17 @@ public class Assets {
     public static final AssetDescriptor<Texture> EXIT_DOWN
             = new AssetDescriptor<Texture>("exit_down_red.png", Texture.class);
 
-    public static final AssetDescriptor<TextureAtlas> MOSQUITO_TEXTURE
-            = new AssetDescriptor<TextureAtlas>("actors/mosquito.atlas", TextureAtlas.class);
+    //Ellenfelek
+
+    public static final AssetDescriptor<TextureAtlas> BADVIRUS_TEXTURE
+            = new AssetDescriptor<TextureAtlas>("animations/virus/red.png", TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> GOODVIRUS_TEXTURE
+            = new AssetDescriptor<TextureAtlas>("animations/virus/green.png", TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> VIRUSTAIL_ATLAS
+            = new AssetDescriptor<TextureAtlas>("animations/virus/tailani.atlas", TextureAtlas.class);
+
 
     public static final AssetDescriptor<TextureAtlas> ROBOT_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/android.atlas", TextureAtlas.class);
@@ -88,7 +97,11 @@ public class Assets {
         manager.load(START_DOWN);
         manager.load(EXIT);
         manager.load(EXIT_DOWN);
-        manager.load(MOSQUITO_TEXTURE);
+        //Ellenfelek
+        manager.load(BADVIRUS_TEXTURE);
+        manager.load(GOODVIRUS_TEXTURE);
+        manager.load(VIRUSTAIL_ATLAS);
+
         manager.load(ROBOT_ATLAS);
         manager.load(BACKGROUND_TEXTURE);
         manager.load(EXPLOSION_ATLAS);

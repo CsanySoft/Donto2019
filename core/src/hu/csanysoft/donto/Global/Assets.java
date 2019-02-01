@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -141,6 +142,9 @@ public class Assets {
     public static final AssetDescriptor<Sound> LOST_SOUND
             = new AssetDescriptor<Sound>("sound/lose.mp3", Sound.class);
 
+    public static final AssetDescriptor<Music> MUS
+            = new AssetDescriptor<Music>("sound/mus.mp3", Music.class);
+
     public static void prepare() {
         manager = new AssetManager();
         Texture.setAssetManager(manager);
@@ -160,6 +164,7 @@ public class Assets {
         manager.load(START_DOWN);
         manager.load(EXIT);
         manager.load(EXIT_DOWN);
+        manager.load(MUS);
         manager.load(TUTORIAL);
         manager.load(TUTORIAL_DOWN);
         manager.load(BACK);

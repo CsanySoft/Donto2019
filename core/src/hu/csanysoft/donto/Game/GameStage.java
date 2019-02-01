@@ -10,9 +10,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+
 
 import hu.csanysoft.donto.Actors.*;
 import hu.csanysoft.donto.Global.Assets;
@@ -68,6 +70,10 @@ public class GameStage extends MyStage {
     public void init() {
         Gdx.input.setCatchBackKey(true);
         //PLAYER HOZZÁADÁSA
+        Image kek = new Image(Assets.manager.get(Assets.KEK));
+        kek.setSize(3000, 2000);
+        kek.setPosition(0 - (1920 - Globals.WORLD_WIDTH) / 1.5f, -500);
+        addActor(kek, 0);
         robot = new Robot(50,50);
         addActor(robot);
         robot.setPosition(WORLD_BOUND_X/2, WORLD_BOUND_Y/2);
@@ -82,7 +88,7 @@ public class GameStage extends MyStage {
         background.setPositionCenterOfActorToCenterOfViewport();
         addActor(background);
         background.setZIndex(0);
-        waterBackground = new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE), WORLD_BOUND_X+200, WORLD_BOUND_Y+200, 0,0, 200);
+        waterBackground = new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE), kek.getWidth()+200, kek.getHeight()+200, kek.getX(),kek.getY(), 200);
         addActor(waterBackground);
         waterBackground.setZIndex(1);
         //PIRULÁK SPAWNOLÁSA
@@ -98,6 +104,8 @@ public class GameStage extends MyStage {
             while(cell.getX() > WORLD_BOUND_X/2-200 && cell.getX() < WORLD_BOUND_X/2+200) cell.setX(random(150, WORLD_BOUND_X-150));
             while(cell.getY() > WORLD_BOUND_Y/2-200 && cell.getY() < WORLD_BOUND_Y/2+200) cell.setY(random(150, WORLD_BOUND_Y-150));
         }
+
+
     }
 
     @Override

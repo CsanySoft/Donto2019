@@ -14,7 +14,7 @@ public class BadVirus extends Virus {
 
     public BadVirus() {
         super();
-        needsABetterWeaponToDestroy = Globals.random(0, 20) < 4;
+        if(gameStage.level >= 5) needsABetterWeaponToDestroy = Globals.random(0, 20) < 4;
         if(needsABetterWeaponToDestroy) addSprite(new OffsetSprite(Assets.manager.get(Assets.CHIPWEAPON_TEXTURE), 15, 20, 30,30));
         body = new OffsetSprite(Assets.manager.get(Assets.BADVIRUS_TEXTURE), 0,0,64,64);
         addSprite(body);

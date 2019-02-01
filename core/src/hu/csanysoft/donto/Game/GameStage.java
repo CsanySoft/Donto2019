@@ -165,7 +165,8 @@ public class GameStage extends MyStage {
 
         if(upgradeTimer >= 10) {
             upgradeTimer = 0;
-            addActor(new Upgrade(Globals.random.nextInt(3)));
+            if(level < 5) addActor(new Upgrade(Globals.random.nextInt(2) +1));
+            else addActor(new Upgrade(Globals.random.nextInt(3)));
         }
     }
 

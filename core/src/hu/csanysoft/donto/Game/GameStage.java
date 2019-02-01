@@ -82,19 +82,23 @@ public class GameStage extends MyStage {
         super.act(delta);
         upgradeTimer+=delta;
         //KARAKTER MOZGÁSA
-        if(forward || Gdx.input.isKeyPressed(Input.Keys.UP)){
-            double rotation = Math.toRadians(robot.getRotation()+90);
-            robot.moveBy((robot.baseSpeed+robot.speedUpgrade)*(float)Math.cos(rotation), (robot.baseSpeed+robot.speedUpgrade)*(float)Math.sin(rotation));
-            if(robot.getX() < 0) robot.setX(0);
-            if(robot.getX()+robot.getWidth() > WORLD_BOUND_X) robot.setX(WORLD_BOUND_X-robot.getWidth());
-            if(robot.getY() < 0) robot.setY(0);
-            if(robot.getY()+robot.getHeight() > WORLD_BOUND_Y) robot.setY(WORLD_BOUND_Y-robot.getHeight());
-        }
-        if(left  || Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            robot.rotateBy(robot.baseSpeed+robot.speedUpgrade/2);
-        }
-        if(right  || Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            robot.rotateBy(-(robot.baseSpeed+robot.speedUpgrade/2));
+        if(robot.isVisible()) {
+            if (forward || Gdx.input.isKeyPressed(Input.Keys.UP)) {
+                double rotation = Math.toRadians(robot.getRotation() + 90);
+                robot.moveBy((robot.baseSpeed + robot.speedUpgrade) * (float) Math.cos(rotation), (robot.baseSpeed + robot.speedUpgrade) * (float) Math.sin(rotation));
+                if (robot.getX() < 0) robot.setX(0);
+                if (robot.getX() + robot.getWidth() > WORLD_BOUND_X)
+                    robot.setX(WORLD_BOUND_X - robot.getWidth());
+                if (robot.getY() < 0) robot.setY(0);
+                if (robot.getY() + robot.getHeight() > WORLD_BOUND_Y)
+                    robot.setY(WORLD_BOUND_Y - robot.getHeight());
+            }
+            if (left || Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+                robot.rotateBy(robot.baseSpeed + robot.speedUpgrade / 2);
+            }
+            if (right || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+                robot.rotateBy(-(robot.baseSpeed + robot.speedUpgrade / 2));
+            }
         }
         //KARAKTER MOZGÁSA VÉGE
 
@@ -191,7 +195,7 @@ public class GameStage extends MyStage {
 
 
         if(goodVirusCount == 0) die();
-        setCameraZoomXY(robot.getX()+robot.getWidth()/2, robot.getY()+robot.getHeight()/2, 0.6f); //KAMERAMOZGÁS
+        if(robot.isVisible())setCameraZoomXY(robot.getX()+robot.getWidth()/2, robot.getY()+robot.getHeight()/2, 0.6f); //KAMERAMOZGÁS
 
         if(upgradeTimer >= 10) {
             upgradeTimer = 0;

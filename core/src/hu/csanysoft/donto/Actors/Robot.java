@@ -43,6 +43,7 @@ public class Robot extends MultiSpriteActor {
             }
             case 2: {
                 hasShield = true;
+                shieldTimeLeft+=30;
                 break;
             }
         }

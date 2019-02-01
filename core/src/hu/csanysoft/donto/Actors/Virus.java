@@ -8,7 +8,9 @@ import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.AnimatedOffsetSprite;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MultiSpriteActor;
+import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyRectangle;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteAnimatedActor;
+import hu.csanysoft.donto.MyBaseClasses.Scene2D.ShapeType;
 
 public class Virus extends MultiSpriteActor {
 
@@ -25,6 +27,7 @@ public class Virus extends MultiSpriteActor {
         tailSprite = new AnimatedOffsetSprite(Assets.manager.get(Assets.VIRUSTAIL_ATLAS), 22, -50, 20, 50);
         addSprite(tailSprite);
         tailSprite.setFps(10);
+        addCollisionShape("farok", new MyRectangle(20, 50, 22, -50, 32, 32));
     }
 
     public void newDest() {

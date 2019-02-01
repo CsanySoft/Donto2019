@@ -22,7 +22,6 @@ public class Virus extends MultiSpriteActor {
         super(64,64);
         dest = new float[2];
         setSize(64, 64);
-        setPosition(Globals.random.nextInt(Globals.WORLD_WIDTH - (int)getWidth()) + Globals.random.nextFloat(), Globals.random.nextInt(Globals.WORLD_HEIGHT - (int)getHeight()) + Globals.random.nextFloat());
         newDest();
         addBaseCollisionRectangleShape();
         tailSprite = new AnimatedOffsetSprite(Assets.manager.get(Assets.VIRUSTAIL_ATLAS), 22, -50, 20, 50);

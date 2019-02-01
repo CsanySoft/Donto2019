@@ -27,6 +27,8 @@ public class GameStage extends MyStage {
     public boolean left = false, right = false, forward = false;
     Robot robot;
     OneSpriteStaticActor background;
+    public static int level = 1;
+    public int badVirusCount = 0;
 
 
 
@@ -79,6 +81,19 @@ public class GameStage extends MyStage {
             }
         }
         //ÜTKÖZÉSVIZSGÁLAT VÉGE
+
+        //BADVIRUS SZÁMOLÁS
+        badVirusCount = 0; //BEÁLLÍTANI NULLÁRA, FORCIKLUSBAN SZÁMOL
+        for(Actor actor:getActors()) {
+            if(actor instanceof BadVirus) badVirusCount++;
+        }
+        if(badVirusCount == 0) {
+            System.out.println("Következő szint");
+            level++;
+            game.setScreen(new GameScreen(game));
+            this.dispose();
+        }
+        //BADVIRUS SZÁMOLÁS VÉGE
     }
 
     public void die() {

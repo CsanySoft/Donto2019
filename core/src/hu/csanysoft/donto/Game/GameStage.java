@@ -44,14 +44,14 @@ public class GameStage extends MyStage {
         super.act(delta);
         //KARAKTER MOZGÁSA
         if(forward || Gdx.input.isKeyPressed(Input.Keys.UP)){
-            double rotation = Math.tan(robot.getRotation());
+            double rotation = Math.toRadians(robot.getRotation()+90);
             robot.moveBy((float)Math.cos(rotation), (float)Math.sin(rotation));
         }
         if(left  || Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            robot.rotateBy(5);
+            robot.rotateBy(2);
         }
         if(right  || Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            robot.rotateBy(-5);
+            robot.rotateBy(-2);
         }
         //KARAKTER MOZGÁSA VÉGE
 

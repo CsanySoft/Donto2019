@@ -6,8 +6,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
+import hu.csanysoft.donto.Actors.GoodVirus;
 import hu.csanysoft.donto.Actors.Robot;
 import hu.csanysoft.donto.Actors.BadVirus;
 import hu.csanysoft.donto.Actors.Virus;
@@ -55,6 +57,24 @@ public class GameStage extends MyStage {
         }
         //KARAKTER MOZGÁSA VÉGE
 
+        //ÜTKÖZÉSVIZSGÁLAT
+        for (Actor actor : getActors()) {
+            if(actor instanceof Virus) {
+                Virus overlappedVirus = (Virus)actor;
+                if(robot.overlaps(overlappedVirus)) {
+                    if(overlappedVirus instanceof GoodVirus) die();
+                    else if(overlappedVirus instanceof BadVirus) {
+                        overlappedVirus.die();
+                        overlappedVirus.remove();
+                    }
+                }
+            }
+        }
+        //ÜTKÖZÉSVIZSGÁLAT VÉGE
+    }
+
+    public void die() {
+        robot.setVisible(false);
     }
 
     @Override

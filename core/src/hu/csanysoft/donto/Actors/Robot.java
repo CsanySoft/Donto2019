@@ -12,5 +12,6 @@ public class Robot extends MultiSpriteActor {
         super(width, height);
         body = new OffsetSprite(Assets.manager.get(Assets.EXIT), 0, 0, 50, 50);
         addSprite(body);
+        addBaseCollisionRectangleShape();
     }
 }

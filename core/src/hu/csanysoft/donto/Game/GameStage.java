@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
@@ -196,6 +197,10 @@ public class GameStage extends MyStage {
 
         if(goodVirusCount == 0) die();
         if(robot.isVisible())setCameraZoomXY(robot.getX()+robot.getWidth()/2, robot.getY()+robot.getHeight()/2, 0.6f); //KAMERAMOZGÁS
+        else{
+            setCameraMoveToXY(WORLD_BOUND_X / 2, WORLD_BOUND_Y / 2 + 1, 1, .1f, 100);
+
+        }
 
         if(upgradeTimer >= 10) {
             upgradeTimer = 0;
@@ -210,6 +215,9 @@ public class GameStage extends MyStage {
         robot.setVisible(false);
         long f = Assets.manager.get(Assets.LOST_SOUND).play();
         Assets.manager.get(Assets.LOST_SOUND).setVolume(f, 50);
+        setCameraMoveSpeed(.1f);
+
+
     }
 
     @Override

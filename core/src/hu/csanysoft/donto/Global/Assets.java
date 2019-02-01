@@ -112,6 +112,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> ARROW_TEXTURE
             = new AssetDescriptor<Texture>("ui/arrow.png", Texture.class);
 
+    public static final AssetDescriptor<Texture> ARROWDOWN_TEXTURE
+            = new AssetDescriptor<Texture>("ui/arrow_down.png", Texture.class);
+
     public static final AssetDescriptor<Texture> NAVIARROW_TEXTURE
             = new AssetDescriptor<Texture>("ui/navigation_arrow.png", Texture.class);
 
@@ -188,6 +191,7 @@ public class Assets {
         manager.load(BACKGROUNDWATER_TEXTURE);
 
         manager.load(ARROW_TEXTURE);
+        manager.load(ARROWDOWN_TEXTURE);
         manager.load(NAVIARROW_TEXTURE);
         manager.load(SPLASH_SOUND);
         manager.load(GAMEOVER_TEXTURE);

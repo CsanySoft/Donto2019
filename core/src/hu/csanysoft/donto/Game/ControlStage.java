@@ -46,9 +46,9 @@ public class ControlStage extends MyStage {
         });
         addActor(gameover);
         won = new OneSpriteStaticActor(Assets.manager.get(Assets.WON_TEXTURE));
-        won.magnify(.5f);
+        won.magnify(2.3f);
         won.setPositionCenterOfActorToCenterOfViewport();
-        won.moveBy(8,Globals.WORLD_HEIGHT/2);
+        won.moveBy(17,(getHeight()/4));
         addActor(won);
         addActor(left = new OneSpriteStaticActor(Assets.manager.get(Assets.ARROW_TEXTURE)){
             @Override
@@ -181,6 +181,5 @@ public class ControlStage extends MyStage {
             halalOka.setPosition(Globals.WORLD_WIDTH / 2 - halalOka.getWidth() / 2, gameover.getY() - 50);
             addActor(halalOka);
         }
-
     }
 }

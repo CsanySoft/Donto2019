@@ -264,7 +264,6 @@ public class GameStage extends MyStage {
             while(cell.getY() > WORLD_BOUND_Y/2-200 && cell.getY() < WORLD_BOUND_Y/2+200) cell.setY(random(150, WORLD_BOUND_Y-150));
         }
 
-
         if(keyCode == Input.Keys.BACK || keyCode == Input.Keys.ESCAPE){
             game.setScreenBackByStackPop();
         }

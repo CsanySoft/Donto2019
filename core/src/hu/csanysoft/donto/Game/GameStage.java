@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import hu.csanysoft.donto.Actors.GoodVirus;
 import hu.csanysoft.donto.Actors.Robot;
 import hu.csanysoft.donto.Actors.BadVirus;
+import hu.csanysoft.donto.Actors.Upgrade;
 import hu.csanysoft.donto.Actors.Virus;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
@@ -37,6 +38,13 @@ public class GameStage extends MyStage {
     public GameStage(Donto game) {
         super(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         addActor(new BadVirus());
+        Upgrade upgrade;
+        addActor(upgrade = new Upgrade(Upgrade.SPEED));
+        upgrade.setPosition(300, 300);
+        addActor(upgrade = new Upgrade(Upgrade.WEAPON));
+        upgrade.setPosition(600, 600);
+        addActor(upgrade = new Upgrade(Upgrade.SHIELD));
+        upgrade.setPosition(500, 500);
     }
 
 

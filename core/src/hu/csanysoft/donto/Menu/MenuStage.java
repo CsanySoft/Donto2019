@@ -41,11 +41,11 @@ public class MenuStage extends MyStage {
         }; */
 
         for(int i = 0; i < 10; i++) {
-            addActor(new GoodVirus(), 0);
-            addActor(new BadVirus(), 0);
+            addActor(new GoodVirus(), 20);
+            addActor(new BadVirus(), 20);
         }
 
-        addActor(new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE),Globals.WORLD_WIDTH + 100, Globals.WORLD_HEIGHT + 100, 0, 0, 100), 0);
+        addActor(new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE),Globals.WORLD_WIDTH + 100, Globals.WORLD_HEIGHT + 100, 0, 0, 100), 5);
         TextButton start = new MyButton("",game.btnStart());
         start.addListener(new InputListener() {
             @Override

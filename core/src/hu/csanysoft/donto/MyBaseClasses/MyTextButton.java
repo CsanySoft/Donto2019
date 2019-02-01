@@ -84,4 +84,13 @@ public class MyTextButton extends TextButton {
         style.down = new TextureRegionDrawable(new TextureRegion(new Texture(p)));
         this.setStyle(style);
     }
+
+    public void magnify(float mul){
+        setSize(getWidth()*mul, getHeight()*mul);
+    }
+
+    public void changePosition(int dx, int dy){
+        setPosition(getX()+dx, getY()+dy);
+    }
 }
+

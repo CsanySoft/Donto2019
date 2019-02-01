@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
-    <folder id="0" name="shield">
-        <file id="0" name="shield/sample.png" width="422" height="423" pivot_x="0.5" pivot_y="0.5"/>
+    <folder id="0">
+        <file id="0" name="sample.png" width="65" height="65" pivot_x="0.523077" pivot_y="0.476923"/>
     </folder>
     <entity id="0" name="entity_000">
         <animation id="0" name="NewAnimation" length="1000" interval="100">
@@ -9,18 +9,25 @@
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
-                <key id="1" time="500">
+                <key id="1" time="1000">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="sample">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="1" y="-8.5"/>
+                    <object folder="0" file="0" x="2" y="31.999995"/>
                 </key>
-                <key id="1" time="500" spin="0">
-                    <object folder="0" file="0" x="1" y="-8.5" scale_x="0.91253" scale_y="0.91253"/>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="2" y="-128.000005" scale_x="1.714286" scale_y="1.797101"/>
                 </key>
             </timeline>
+        </animation>
+    </entity>
+    <entity id="1" name="entity_001">
+        <animation id="0" name="NewAnimation" length="1000" interval="100">
+            <mainline>
+                <key id="0"/>
+            </mainline>
         </animation>
     </entity>
 </spriter_data>

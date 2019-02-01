@@ -16,7 +16,7 @@ public class Robot extends MultiSpriteActor {
     public static boolean hasWeaponUpgrade = false;
     public static boolean hasShield = false;
 
-    public static float shieldTimeLeft = 30;
+    public static float shieldTimeLeft = 10;
 
     float lastX = 0, lastY = 0;
 
@@ -43,7 +43,7 @@ public class Robot extends MultiSpriteActor {
             }
             case 2: {
                 hasShield = true;
-                shieldTimeLeft+=30;
+                shieldTimeLeft+=10;
                 break;
             }
         }
@@ -68,7 +68,6 @@ public class Robot extends MultiSpriteActor {
             shieldTimeLeft -= delta;
             if(shieldTimeLeft < 0){
                 hasShield = false;
-                shieldTimeLeft = 30;
             }
         }else shieldSprite.setVisible(false);
     }

@@ -65,6 +65,10 @@ public class GameStage extends MyStage {
         if(forward || Gdx.input.isKeyPressed(Input.Keys.UP)){
             double rotation = Math.toRadians(robot.getRotation()+90);
             robot.moveBy((robot.baseSpeed+robot.speedUpgrade)*(float)Math.cos(rotation), (robot.baseSpeed+robot.speedUpgrade)*(float)Math.sin(rotation));
+            if(robot.getX() < 0) robot.setX(0);
+            if(robot.getX()+robot.getWidth() > Globals.WORLD_WIDTH) robot.setX(Globals.WORLD_WIDTH-robot.getWidth());
+            if(robot.getY() < 0) robot.setY(0);
+            if(robot.getY()+robot.getHeight() > Globals.WORLD_HEIGHT) robot.setY(Globals.WORLD_HEIGHT-robot.getHeight());
         }
         if(left  || Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             robot.rotateBy(robot.baseSpeed+robot.speedUpgrade/2);
@@ -158,6 +162,7 @@ public class GameStage extends MyStage {
         }
         if(keyCode == Input.Keys.D){
             robot.hasShield = true;
+            robot.shieldTimeLeft += 10;
         }
 
 

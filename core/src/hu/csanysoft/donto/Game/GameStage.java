@@ -114,9 +114,9 @@ public class GameStage extends MyStage {
                     robot.addUpgrade(overlappedUpgrade.getType());
                     String message = "";
                     switch(overlappedUpgrade.getType()){
-                        case Upgrade.SHIELD: message = "Pajzsmodul telepítve"; break;
-                        case Upgrade.SPEED: message = "Sebesség növelve"; break;
-                        case Upgrade.WEAPON: message = "Fegyverfejlesztés telepítve"; break;
+                        case Upgrade.SHIELD: message = "Shield module installed"; break;
+                        case Upgrade.SPEED: message = "Speed increased"; break;
+                        case Upgrade.WEAPON: message = "Weapon upgrade installed"; break;
                     }
                     addActor(new Popup(message, (int)robot.getX(), (int)robot.getY(), Color.YELLOW));
                     overlappedUpgrade.remove();

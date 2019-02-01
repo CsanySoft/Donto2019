@@ -52,6 +52,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> EXIT_DOWN
             = new AssetDescriptor<Texture>("exit_down_red.png", Texture.class);
 
+    public static final AssetDescriptor<TextureAtlas> MOSQUITO_TEXTURE
+            = new AssetDescriptor<TextureAtlas>("actors/mosquito.atlas", TextureAtlas.class);
+
 
     public static void prepare() {
         manager = new AssetManager();
@@ -71,6 +74,7 @@ public class Assets {
         manager.load(START_DOWN);
         manager.load(EXIT);
         manager.load(EXIT_DOWN);
+        manager.load(MOSQUITO_TEXTURE);
     }
 
     public static void afterLoaded() {

@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
+import hu.csanysoft.donto.Actors.BadVirus;
+import hu.csanysoft.donto.Actors.Virus;
 import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.Donto;
 
@@ -19,6 +21,8 @@ public class GameStage extends MyStage {
 
     public GameStage(Donto game) {
         super(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
+
+        addActor(new BadVirus());
     }
 
 
@@ -32,8 +36,6 @@ public class GameStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
     }
-
-
 
     @Override
     public boolean keyDown(int keyCode) {

@@ -16,6 +16,7 @@ import hu.csanysoft.donto.MyBaseClasses.UI.MyLabel;
 public class ControlStage extends MyStage {
 
     GameStage gameStage;
+    OneSpriteStaticActor left, right, forward;
 
     public ControlStage(Donto game, GameStage gs) {
         super(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
@@ -24,18 +25,64 @@ public class ControlStage extends MyStage {
 
     @Override
     public void init() {
-        addActor(new OneSpriteStaticActor(Assets.manager.get(Assets.EMPTY_TEXTURE)){
+        addActor(left = new OneSpriteStaticActor(Assets.manager.get(Assets.START)){
             @Override
             public void init() {
                 super.init();
-                setSize(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT);
+                setSize(100, 100);
+                setPosition(10,10);
                 addListener(new ClickListener(){
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        gameStage.left = true;
                         return super.touchDown(event, x, y, pointer, button);
                     }
+
                     @Override
                     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                        gameStage.left = false;
+                        super.touchUp(event, x, y, pointer, button);
+                    }
+                });
+            }
+        });
+        addActor(right = new OneSpriteStaticActor(Assets.manager.get(Assets.START)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(100, 100);
+                setPosition(10,10);
+                addListener(new ClickListener(){
+                    @Override
+                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        gameStage.right = true;
+                        return super.touchDown(event, x, y, pointer, button);
+                    }
+
+                    @Override
+                    public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                        gameStage.right = false;
+                        super.touchUp(event, x, y, pointer, button);
+                    }
+                });
+            }
+        });
+        addActor(forward = new OneSpriteStaticActor(Assets.manager.get(Assets.START)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(100, 100);
+                setPosition(10,10);
+                addListener(new ClickListener(){
+                    @Override
+                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                        gameStage.forward = true;
+                        return super.touchDown(event, x, y, pointer, button);
+                    }
+
+                    @Override
+                    public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                        gameStage.forward = false;
                         super.touchUp(event, x, y, pointer, button);
                     }
                 });

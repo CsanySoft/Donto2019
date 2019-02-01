@@ -46,6 +46,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> EXIT_DOWN
             = new AssetDescriptor<Texture>("exit_down_red.png", Texture.class);
 
+    public static final AssetDescriptor<Texture> ANTIPILL_TEXTURE
+            = new AssetDescriptor<Texture>("antipill.png", Texture.class);
+
     //Ellenfelek
 
     public static final AssetDescriptor<Texture> BADVIRUS_TEXTURE
@@ -57,7 +60,7 @@ public class Assets {
     public static final AssetDescriptor<TextureAtlas> VIRUSTAIL_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/virus/tailani.atlas", TextureAtlas.class);
 
-    //Chip fejlesztések
+    //Chip fejlesztések, páncél
 
     public static final AssetDescriptor<Texture> CHIPSPEED_TEXTURE
             = new AssetDescriptor<Texture>("chips/speed.png", Texture.class);
@@ -68,9 +71,11 @@ public class Assets {
     public static final AssetDescriptor<Texture> CHIPWEAPON_TEXTURE
             = new AssetDescriptor<Texture>("chips/weapon.png", Texture.class);
 
-    //Buborék atlasz
     public static final AssetDescriptor<TextureAtlas> BUBBLE_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/bubbles/bubbleani.atlas", TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> SHIELD_ATLAS
+            = new AssetDescriptor<TextureAtlas>("animations/shield/shield.atlas", TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> ROBOT_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/android.atlas", TextureAtlas.class);
@@ -114,6 +119,7 @@ public class Assets {
         manager.load(START_DOWN);
         manager.load(EXIT);
         manager.load(EXIT_DOWN);
+        manager.load(ANTIPILL_TEXTURE);
         //Ellenfelek
         manager.load(BADVIRUS_TEXTURE);
         manager.load(GOODVIRUS_TEXTURE);
@@ -122,8 +128,8 @@ public class Assets {
         manager.load(CHIPSPEED_TEXTURE);
         manager.load(CHIPSHIELD_TEXTURE);
         manager.load(CHIPWEAPON_TEXTURE);
-        //buborék
         manager.load(BUBBLE_ATLAS);
+        manager.load(SHIELD_ATLAS);
 
         manager.load(ROBOT_ATLAS);
         manager.load(BACKGROUND_TEXTURE);

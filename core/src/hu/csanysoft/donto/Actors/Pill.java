@@ -7,8 +7,8 @@ import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 
 public class Pill extends OneSpriteStaticActor {
     public Pill(float x, float y, float rotation) {
-        super(Assets.manager.get(Assets.EXIT));
-        setSize(100, 50);
+        super(Assets.manager.get(Assets.ANTIPILL_TEXTURE));
+        setSize(50, 100);
         setPosition(x,y);
         setRotation(rotation);
         addBaseCollisionRectangleShape();

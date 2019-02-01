@@ -10,7 +10,7 @@ public class Robot extends MultiSpriteActor {
 
     AnimatedOffsetSprite body;
     AnimatedOffsetSprite trail;
-    OffsetSprite shieldSprite;
+    AnimatedOffsetSprite shieldSprite;
 
     public final int baseSpeed = 2;
     public static int speedUpgrade = 0;
@@ -28,8 +28,9 @@ public class Robot extends MultiSpriteActor {
         trail = new AnimatedOffsetSprite(Assets.manager.get(Assets.BUBBLE_ATLAS), 17, -20, 15, 25);
         trail.setFps(90);
         addSprite(trail);
-        shieldSprite = new OffsetSprite(Assets.manager.get(Assets.EXIT), -25,-20,100,100);
+        shieldSprite = new AnimatedOffsetSprite(Assets.manager.get(Assets.SHIELD_ATLAS), -25,-20,100,100);
         addSprite(shieldSprite);
+        shieldSprite.setFps(15);
         addBaseCollisionRectangleShape();
         addCollisionShape("fej", new MyRectangle(50,25, 0,50, 25,25));
         if(hasWeaponUpgrade) addSprite(new OffsetSprite(Assets.manager.get(Assets.CHIPWEAPON_TEXTURE), 10, 20, 30,30));

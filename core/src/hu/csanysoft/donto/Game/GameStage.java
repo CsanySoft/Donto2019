@@ -3,6 +3,7 @@ package hu.csanysoft.donto.Game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -10,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import hu.csanysoft.donto.Actors.GoodVirus;
+import hu.csanysoft.donto.Actors.Popup;
 import hu.csanysoft.donto.Actors.Robot;
 import hu.csanysoft.donto.Actors.BadVirus;
 import hu.csanysoft.donto.Actors.Upgrade;
@@ -106,6 +108,13 @@ public class GameStage extends MyStage {
                 Upgrade overlappedUpgrade = (Upgrade)actor;
                 if(robot.overlaps(overlappedUpgrade)) {
                     robot.addUpgrade(overlappedUpgrade.getType());
+                    String message = "";
+                    switch(overlappedUpgrade.getType()){
+                        case Upgrade.SHIELD: message = "Pajzsmodul telepítve"; break;
+                        case Upgrade.SPEED: message = "Sebesség növelve"; break;
+                        case Upgrade.WEAPON: message = "Fegyverfejlesztés telepítve"; break;
+                    }
+                    addActor(new Popup(message, (int)robot.getX(), (int)robot.getY(), Color.YELLOW));
                     overlappedUpgrade.remove();
                 }
             }

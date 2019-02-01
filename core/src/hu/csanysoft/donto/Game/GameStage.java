@@ -38,7 +38,7 @@ public class GameStage extends MyStage {
     public static int WORLD_BOUND_X = 1920, WORLD_BOUND_Y = 1080;
 
 
-    public GameStage(Donto game) {
+    public GameStage(Donto game, boolean newGame) {
         super(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         for (int i = 0; i < level; i++) {
             addActor(new BadVirus());
@@ -46,7 +46,17 @@ public class GameStage extends MyStage {
             addActor(new GoodVirus());
             badVirusCount++; goodVirusCount++;
         }
+        if(newGame){
+            robot.hasShield = false;
+            robot.shieldTimeLeft = 0;
+            robot.hasWeaponUpgrade = false;
+            robot.speedUpgrade = 0;
+            level = 1;
+        }
+
     }
+
+
 
 
     @Override
@@ -189,7 +199,7 @@ public class GameStage extends MyStage {
             System.out.println("Következő szint");
             Assets.manager.get(Assets.WIN_SOUND).play();
             level++;
-            game.setScreen(new GameScreen(game));
+            game.setScreen(new GameScreen(game, false));
             this.dispose();
         }
         //BADVIRUS SZÁMOLÁS VÉGE

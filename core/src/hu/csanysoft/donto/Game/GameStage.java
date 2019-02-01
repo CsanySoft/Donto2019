@@ -38,7 +38,7 @@ public class GameStage extends MyStage {
     Robot robot;
     OneSpriteStaticActor background;
     public static int level = 1;
-    public int badVirusCount = 0;
+    public int badVirusCount, goodVirusCount;
     public float upgradeTimer = 0;
 
     public static int WORLD_BOUND_X = 1920, WORLD_BOUND_Y = 1080;
@@ -50,6 +50,7 @@ public class GameStage extends MyStage {
             addActor(new BadVirus());
             //addActor(new BadVirus());
             addActor(new GoodVirus());
+            badVirusCount++; goodVirusCount++;
         }
     }
 
@@ -104,13 +105,20 @@ public class GameStage extends MyStage {
                 //VÍRUS  VÍRUSSAL
                 for(Actor virus : getActors().toArray()) {
                     if(actor instanceof GoodVirus && virus instanceof BadVirus) {
-                        if(((GoodVirus) actor).overlaps((BadVirus) virus)) actor.remove();
+                        if(((GoodVirus) actor).overlaps((BadVirus) virus)) {
+                            actor.remove();
+                            goodVirusCount--;
+                        }
                     } else if (actor instanceof BadVirus && virus instanceof GoodVirus) {
-                        if(((BadVirus) actor).overlaps((GoodVirus) virus)) virus.remove();
+                        if(((BadVirus) actor).overlaps((GoodVirus) virus)) {
+                            virus.remove();
+                            goodVirusCount--;
+                        }
                     }
                     if(virus instanceof Pill){
                         if(((Virus) actor).overlaps((MyActor) virus)){
                             actor.remove();
+                            goodVirusCount--;
                         }
                     }
                 }
@@ -124,6 +132,7 @@ public class GameStage extends MyStage {
                             robot.remove();
                         } else {
                             overlappedVirus.die();
+                            badVirusCount--;
                             long f = Assets.manager.get(Assets.SPLASH_SOUND).play();
                             Assets.manager.get(Assets.SPLASH_SOUND).setVolume(f, 40);
                             overlappedVirus.remove();
@@ -168,10 +177,10 @@ public class GameStage extends MyStage {
         //ÜTKÖZÉSVIZSGÁLAT VÉGE
 
         //BADVIRUS SZÁMOLÁS
-        badVirusCount = 0; //BEÁLLÍTANI NULLÁRA, FORCIKLUSBAN SZÁMOL
-        for(Actor actor:getActors()) {
+        //badVirusCount = 0; //BEÁLLÍTANI NULLÁRA, FORCIKLUSBAN SZÁMOL
+       /* for(Actor actor:getActors()) {
             if(actor instanceof BadVirus) badVirusCount++;
-        }
+        } */
         if(badVirusCount == 0) {
             System.out.println("Következő szint");
             Assets.manager.get(Assets.WIN_SOUND).play();

@@ -161,14 +161,14 @@ public class GameStage extends MyStage {
 
             //ROBOT A PIRULÁVAL
             else if (actor instanceof Pill){
-                if(robot.overlaps((MyActor) actor) && !robot.hasShield) {
+                if(robot.overlaps((MyActor) actor)) {
                     actor.remove();
                 }
             }
 
             //ROBOT A FEHÉR SEJTTEL
             else if (actor instanceof WhiteBloodCell){
-                if(robot.overlaps((MyActor) actor)){
+                if(robot.overlaps((MyActor) actor) && !robot.hasShield){
                     die();
                 }
             }

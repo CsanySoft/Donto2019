@@ -20,16 +20,35 @@ import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanysoft.donto.Tutorial.TutorialScreen;
 
 public class MenuStage extends MyStage {
+    OneSpriteStaticActor background;
 
     public MenuStage(Viewport viewport, Batch batch, Donto game) {
         super(viewport, batch, game);
         Gdx.input.setCatchBackKey(true);
         setDebugAll(Globals.DEBUG_ALL);
         for(int i = 0; i < 10; i++) {
-            addActor(new GoodVirus());
-            addActor(new BadVirus());
+            GoodVirus gv; BadVirus bv;
+            addActor(gv = new GoodVirus());
+            addActor(bv = new BadVirus());
+            gv.setZIndex(1);
+            bv.setZIndex(1);
         }
-        addActor(new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE),Globals.WORLD_WIDTH + 100, Globals.WORLD_HEIGHT + 100, 0, 0, 100));
+        addActor(background = new OneSpriteStaticActor(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE)){
+            @Override
+            public void init() {
+                super.init();
+                setSize(Globals.WORLD_WIDTH+200, Globals.WORLD_HEIGHT+200);
+                setPosition(-100,-100);
+            }
+
+            @Override
+            public void act(float delta) {
+                super.act(delta);
+                setX(-100 + (float)Math.sin(elapsedTime)*100);
+                setY(-100 + (float)Math.cos(elapsedTime)*100);
+            }
+        });
+        background.setZIndex(0);
     }
 
     public void init() {
@@ -141,6 +160,10 @@ public class MenuStage extends MyStage {
        // spiral.setOrigintoCenter();
        // spiral.setPositionCenterOfActorToCenterOfViewport();
        // spiral.setZIndex(0);
+
+        start.setZIndex(100);
+        tutorial.setZIndex(100);
+        exit.setZIndex(100);
     }
 
     @Override

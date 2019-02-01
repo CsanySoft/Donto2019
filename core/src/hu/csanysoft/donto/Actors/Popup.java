@@ -16,11 +16,16 @@ public class Popup extends MyLabel {
         super(text,Donto.getColorLabelStyle(Color.YELLOW));
         setPosition(x,y);
     }
+    public Popup(String text, int x, int y, Color color) {
+        super(text,Donto.getColorLabelStyle(color));
+        setPosition(x,y);
+        scaleBy(0.5f);
+    }
 
     @Override
     public void act(float delta) {
         super.act(delta);
-        moveBy(0,5);
+        moveBy(0,1);
         if(elapsedtime > 1) addAction(Actions.alpha(0, 1));
         if(elapsedtime > 2) getStage().getActors().removeValue(this, true);
     }

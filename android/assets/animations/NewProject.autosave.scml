@@ -5,6 +5,10 @@
         <file id="1" name="prop.png" width="243" height="32" pivot_x="0.497942" pivot_y="0.75"/>
         <file id="2" name="prop1.png" width="121" height="32" pivot_x="1.00826" pivot_y="0.75"/>
     </folder>
+    <folder id="1" name="virus">
+        <file id="0" name="virus/tail.png" width="169" height="169" pivot_x="0.508876" pivot_y="0.508876"/>
+        <file id="1" name="virus/green.png" width="297" height="297" pivot_x="0" pivot_y="1"/>
+    </folder>
     <entity id="0" name="entity_000">
         <animation id="0" name="NewAnimation" length="1000" interval="100">
             <mainline>
@@ -33,6 +37,31 @@
             <timeline id="2" name="prop1">
                 <key id="0" spin="0">
                     <object folder="0" file="2" x="0.24047" y="-157.94135" scale_x="0.052751"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="1" name="entity_001">
+        <animation id="0" name="NewAnimation" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="500">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="tail">
+                <key id="0">
+                    <object folder="1" file="0" x="1.724138" y="5.172414" scale_x="1.1"/>
+                </key>
+                <key id="1" time="500">
+                    <object folder="1" file="0" x="1.724138" y="5.172414" angle="0" scale_x="-1.1"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="green">
+                <key id="0" spin="0">
+                    <object folder="1" file="1" x="-145.614035" y="382.45614"/>
                 </key>
             </timeline>
         </animation>

@@ -7,8 +7,9 @@ import hu.csanysoft.donto.MyBaseClasses.Scene2D.OffsetSprite;
 
 public class Robot extends MultiSpriteActor {
 
-    OffsetSprite body;
-    AnimatedOffsetSprite propeller, trail;
+    AnimatedOffsetSprite body;
+    AnimatedOffsetSprite trail;
+    OffsetSprite shield;
 
     public boolean hasSpeedUpgrade = false;
     public boolean hasWeaponUpgrade = false;
@@ -20,11 +21,9 @@ public class Robot extends MultiSpriteActor {
 
     public Robot(float width, float height) {
         super(width, height);
-        body = new OffsetSprite(Assets.manager.get(Assets.EXIT), 0, 0, 50, 50);
+        body = new AnimatedOffsetSprite(Assets.manager.get(Assets.ROBOT_ATLAS), 0, 0, 50, 75);
         addSprite(body);
-        propeller = new AnimatedOffsetSprite(Assets.manager.get(Assets.EXPLOSION_ATLAS), 5, -40, 40, 40);
-        addSprite(propeller);
-        trail = new AnimatedOffsetSprite(Assets.manager.get(Assets.EXPLOSION_ATLAS), 10, -80, 30, 80);
+        trail = new AnimatedOffsetSprite(Assets.manager.get(Assets.EXPLOSION_ATLAS), 10, -60, 30, 80);
         addSprite(trail);
         addBaseCollisionRectangleShape();
     }
@@ -34,11 +33,11 @@ public class Robot extends MultiSpriteActor {
         super.act(delta);
         if(lastX != getX() || lastY != getY()){
             trail.setVisible(true);
-            propeller.start();
+            body.start();
         }
         else{
             trail.setVisible(false);
-            propeller.stop();
+            body.stop();
         }
         lastX = getX();
         lastY = getY();

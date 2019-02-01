@@ -77,6 +77,8 @@ public class GameStage extends MyStage {
                     if(overlappedVirus instanceof GoodVirus) die();
                     else if(overlappedVirus instanceof BadVirus) {
                         overlappedVirus.die();
+                        long f = Assets.manager.get(Assets.SPLASH_SOUND).play();
+                        Assets.manager.get(Assets.SPLASH_SOUND).setVolume(f, 40);
                         overlappedVirus.remove();
                     }
                 }

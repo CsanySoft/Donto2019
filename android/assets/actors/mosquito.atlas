@@ -1,0 +1,60 @@
+mosquito.png
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+0
+   rotate: false
+   xy: 0, 0
+   size: 620, 468
+   orig: 0, 0
+   offset: 0, 0
+   index: -1
+1
+   rotate: false
+   xy: 620, 0
+   size: 620, 468
+   orig: 0, 0
+   offset: 0, 0
+   index: -1
+2
+   rotate: false
+   xy: 0, 468
+   size: 620, 468
+   orig: 0, 0
+   offset: 0, 0
+   index: -1
+3
+   rotate: false
+   xy: 620, 468
+   size: 620, 468
+   orig: 0, 0
+   offset: 0, 0
+   index: -1
+4
+   rotate: false
+   xy: 0, 936
+   size: 620, 468
+   orig: 0, 0
+   offset: 0, 0
+   index: -1
+5
+   rotate: false
+   xy: 620, 936
+   size: 620, 468
+   orig: 0, 0
+   offset: 0, 0
+   index: -1
+6
+   rotate: false
+   xy: 0, 1404
+   size: 620, 468
+   orig: 0, 0
+   offset: 0, 0
+   index: -1
+7
+   rotate: false
+   xy: 620, 1404
+   size: 620, 468
+   orig: 0, 0
+   offset: 0, 0
+   index: -1

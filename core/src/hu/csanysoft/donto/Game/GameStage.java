@@ -170,7 +170,7 @@ public class GameStage extends MyStage {
 
         if(upgradeTimer >= 10) {
             upgradeTimer = 0;
-            if(level < 5) addActor(new Upgrade(Globals.random.nextInt(2) +1));
+            if(level < 5 && !robot.hasWeaponUpgrade) addActor(new Upgrade(Globals.random.nextInt(2) +1));
             else addActor(new Upgrade(random.nextInt(3)));
         }
     }

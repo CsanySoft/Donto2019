@@ -98,7 +98,7 @@ public class Assets {
             = new AssetDescriptor<TextureAtlas>("animations/shield/shield.atlas", TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> ROBOT_ATLAS
-            = new AssetDescriptor<TextureAtlas>("animations/android.atlas", TextureAtlas.class);
+            = new AssetDescriptor<TextureAtlas>("animations/palyer/android.atlas", TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> EXPLOSION_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/explosion2.atlas", TextureAtlas.class);

@@ -6,6 +6,10 @@
     <folder id="1">
         <file id="0" name="whiteBloodCells.png" width="186" height="186" pivot_x="0.5" pivot_y="0.5"/>
     </folder>
+    <folder id="2" name="palyer">
+        <file id="0" name="palyer/body.png" width="264" height="477" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="palyer/prop.png" width="243" height="32" pivot_x="0.493827" pivot_y="0.71875"/>
+    </folder>
     <entity id="0" name="entity_000">
         <animation id="0" name="NewAnimation" length="1000" interval="100">
             <mainline>
@@ -48,6 +52,39 @@
                 </key>
                 <key id="2" time="1000" spin="-1">
                     <object folder="1" file="0" x="7.018692" y="-3.280374" angle="135.790128" scale_x="1" scale_y="1"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="2" name="entity_002">
+        <animation id="0" name="NewAnimation" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+                <key id="1" time="500">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="3" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="2" file="0" x="-131.752336" y="281.448598"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="prop">
+                <key id="0">
+                    <object folder="2" file="1" x="1.075247" y="-198.008472" pivot_x="0.500016" pivot_y="0.618688" scale_x="1.339723" scale_y="1.339723"/>
+                </key>
+                <key id="1">
+                    <object folder="2" file="1" x="73.893861" y="-200.093842" pivot_x="0.723693" pivot_y="0.570046" scale_x="1.339723" scale_y="1.339723"/>
+                </key>
+                <key id="2" time="500">
+                    <object folder="2" file="1" x="0.596199" y="-200.093842" pivot_x="0.723693" pivot_y="0.570046" angle="0" scale_x="-0.008814" scale_y="1.339723"/>
+                </key>
+                <key id="3" time="500">
+                    <object folder="2" file="1" x="1.075247" y="-198.008472" pivot_x="0.500016" pivot_y="0.618688" angle="0" scale_x="-0.008814" scale_y="1.339723"/>
                 </key>
             </timeline>
         </animation>

@@ -38,7 +38,11 @@ public class GameStage extends MyStage {
 
     public GameStage(Donto game) {
         super(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
-        addActor(new BadVirus());
+        for (int i = 0; i < level; i++) {
+            addActor(new BadVirus());
+            addActor(new BadVirus());
+            addActor(new GoodVirus());
+        }
     }
 
 

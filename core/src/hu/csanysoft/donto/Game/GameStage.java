@@ -51,11 +51,12 @@ public class GameStage extends MyStage {
         robot = new Robot(50,50);
         addActor(robot);
         robot.setPositionCenterOfActorToCenterOfViewport();
-        background = new OneSpriteStaticActor(Assets.manager.get(Assets.BACKGROUND_TEXTURE));
+        robot.setZIndex(10);
         //HÁTTÉR
+        background = new OneSpriteStaticActor(Assets.manager.get(Assets.BACKGROUND_TEXTURE));
         background.setSize(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT);
+        addActor(background);
         background.setZIndex(0);
-        //addActor(background);
     }
 
     @Override

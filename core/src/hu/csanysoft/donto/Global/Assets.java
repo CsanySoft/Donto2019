@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -65,6 +66,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> ARROW_TEXTURE
             = new AssetDescriptor<Texture>("ui/arrow.png", Texture.class);
 
+    public static final AssetDescriptor<Sound> SPLASH_SOUND
+            = new AssetDescriptor<Sound>("sound/splash.mp3", Sound.class);
+
 
     public static void prepare() {
         manager = new AssetManager();
@@ -89,6 +93,7 @@ public class Assets {
         manager.load(BACKGROUND_TEXTURE);
         manager.load(EXPLOSION_ATLAS);
         manager.load(ARROW_TEXTURE);
+        manager.load(SPLASH_SOUND);
     }
 
     public static void afterLoaded() {

@@ -171,15 +171,10 @@ abstract public class MyActor extends Actor implements InitableInterface {
 
     @Override
     public boolean setZIndex(int index) {
-
         this.zIndex = index;
-
         Group parent = this.getParent();
-
         if (parent == null) return false;
-
         Array<Actor> children = parent.getChildren();
-
         if (children.size == 1) return true;
         if (getStage() != null){
             if (getStage() instanceof MyStage){

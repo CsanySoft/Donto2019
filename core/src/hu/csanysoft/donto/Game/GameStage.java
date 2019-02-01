@@ -33,10 +33,12 @@ public class GameStage extends MyStage {
     public boolean left = false, right = false, forward = false, won = false;
     Robot robot;
     OneSpriteStaticActor background;
+    MovingBackground waterBackground;
     public static int level = 1;
     public int badVirusCount, goodVirusCount;
     public float upgradeTimer = 0;
     public String halalOka;
+
 
     public static int WORLD_BOUND_X = 1920, WORLD_BOUND_Y = 1080;
 
@@ -76,6 +78,9 @@ public class GameStage extends MyStage {
         background.setPositionCenterOfActorToCenterOfViewport();
         addActor(background);
         background.setZIndex(0);
+        waterBackground = new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE), WORLD_BOUND_X+200, WORLD_BOUND_Y+200, 0,0, 200);
+        addActor(waterBackground);
+        waterBackground.setZIndex(1);
         //PIRULÁK SPAWNOLÁSA
         int pillCount = (int)Math.floor(level/5.0);
         for(int i = 0; i < pillCount; i++){
@@ -122,6 +127,7 @@ public class GameStage extends MyStage {
                 Virus overlappedVirus = (Virus)actor;
 
                 //VÍRUS  VÍRUSSAL
+                /*
                 for(Actor virus : getActors().toArray()) {
                     if(actor instanceof GoodVirus && virus instanceof BadVirus) {
                         if(((GoodVirus) actor).overlaps((BadVirus) virus)) {
@@ -140,7 +146,7 @@ public class GameStage extends MyStage {
                             goodVirusCount--;
                         }
                     }
-                }
+                } */
                 //VÍRUS A VÍRUSSAL VÉGE
 
                 //ROBOT A VÍRUSSAL

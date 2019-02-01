@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.csanysoft.donto.Actors.BadVirus;
+import hu.csanysoft.donto.Actors.GoodVirus;
 import hu.csanysoft.donto.Game.GameScreen;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
@@ -22,6 +24,10 @@ public class MenuStage extends MyStage {
         super(viewport, batch, game);
         Gdx.input.setCatchBackKey(true);
         setDebugAll(Globals.DEBUG_ALL);
+        for(int i = 0; i < 10; i++) {
+            addActor(new GoodVirus());
+            addActor(new BadVirus());
+        }
     }
 
     public void init() {

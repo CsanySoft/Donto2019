@@ -20,6 +20,7 @@ public class ControlStage extends MyStage {
     OneSpriteStaticActor left, right, forward;
     MyLabel speedUpgrades;
     MyLabel shieldTime;
+    OneSpriteStaticActor gameover;
 
     public ControlStage(Donto game, GameStage gs) {
         super(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
@@ -28,6 +29,19 @@ public class ControlStage extends MyStage {
 
     @Override
     public void init() {
+        gameover = new OneSpriteStaticActor(Assets.manager.get(Assets.GAMEOVER_TEXTURE));
+        gameover.magnify(.5f);
+        gameover.setPositionCenterOfActorToCenterOfViewport();
+        gameover.moveBy(8,Globals.WORLD_HEIGHT/2);
+        gameover.addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if(event.getTarget().isVisible())
+                    game.setScreenBackByStackPop();
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+        addActor(gameover);
         addActor(left = new OneSpriteStaticActor(Assets.manager.get(Assets.ARROW_TEXTURE)){
             @Override
             public void init() {
@@ -121,5 +135,11 @@ public class ControlStage extends MyStage {
                 }else setText("");
             }
         });
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        gameover.setVisible(!gameStage.robot.isVisible());
     }
 }

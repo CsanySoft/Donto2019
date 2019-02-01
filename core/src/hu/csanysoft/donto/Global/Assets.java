@@ -4,8 +4,6 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -55,7 +53,7 @@ public class Assets {
     public static final AssetDescriptor<TextureAtlas> MOSQUITO_TEXTURE
             = new AssetDescriptor<TextureAtlas>("actors/mosquito.atlas", TextureAtlas.class);
 
-    public static final AssetDescriptor<TextureAtlas> ROBOT_TEXTURE
+    public static final AssetDescriptor<TextureAtlas> ROBOT_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/android.atlas", TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> EXPLOSION_ATLAS
@@ -63,6 +61,9 @@ public class Assets {
 
     public static final AssetDescriptor<Texture> BACKGROUND_TEXTURE
             = new AssetDescriptor<Texture>("background.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> ARROW_TEXTURE
+            = new AssetDescriptor<Texture>("ui/arrow.png", Texture.class);
 
 
     public static void prepare() {
@@ -84,9 +85,10 @@ public class Assets {
         manager.load(EXIT);
         manager.load(EXIT_DOWN);
         manager.load(MOSQUITO_TEXTURE);
-        manager.load(ROBOT_TEXTURE);
+        manager.load(ROBOT_ATLAS);
         manager.load(BACKGROUND_TEXTURE);
         manager.load(EXPLOSION_ATLAS);
+        manager.load(ARROW_TEXTURE);
     }
 
     public static void afterLoaded() {

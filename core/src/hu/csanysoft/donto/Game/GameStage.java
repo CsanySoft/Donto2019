@@ -30,6 +30,8 @@ public class GameStage extends MyStage {
     public static int level = 1;
     public int badVirusCount = 0;
 
+    float robotSpeedMultiplier = 2;
+
 
 
     public GameStage(Donto game) {
@@ -55,9 +57,11 @@ public class GameStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         //KARAKTER MOZGÁSA
+        if(robot.hasSpeedUpgrade) robotSpeedMultiplier = 4;
+        else robotSpeedMultiplier = 2;
         if(forward || Gdx.input.isKeyPressed(Input.Keys.UP)){
             double rotation = Math.toRadians(robot.getRotation()+90);
-            robot.moveBy((float)Math.cos(rotation), (float)Math.sin(rotation));
+            robot.moveBy(robotSpeedMultiplier*(float)Math.cos(rotation), robotSpeedMultiplier*(float)Math.sin(rotation));
         }
         if(left  || Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             robot.rotateBy(2);
@@ -102,6 +106,12 @@ public class GameStage extends MyStage {
 
     @Override
     public boolean keyDown(int keyCode) {
+        if(keyCode == Input.Keys.S){
+            robot.hasSpeedUpgrade = ! robot.hasSpeedUpgrade;
+
+        }
+
+
         return super.keyDown(keyCode);
     }
 

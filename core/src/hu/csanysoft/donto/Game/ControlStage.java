@@ -25,12 +25,13 @@ public class ControlStage extends MyStage {
 
     @Override
     public void init() {
-        addActor(left = new OneSpriteStaticActor(Assets.manager.get(Assets.START)){
+        addActor(left = new OneSpriteStaticActor(Assets.manager.get(Assets.ARROW_TEXTURE)){
             @Override
             public void init() {
                 super.init();
                 setSize(100, 100);
                 setPosition(10,10);
+                rotateBy(180);
                 addListener(new ClickListener(){
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -46,7 +47,7 @@ public class ControlStage extends MyStage {
                 });
             }
         });
-        addActor(right = new OneSpriteStaticActor(Assets.manager.get(Assets.START)){
+        addActor(right = new OneSpriteStaticActor(Assets.manager.get(Assets.ARROW_TEXTURE)){
             @Override
             public void init() {
                 super.init();
@@ -67,12 +68,13 @@ public class ControlStage extends MyStage {
                 });
             }
         });
-        addActor(forward = new OneSpriteStaticActor(Assets.manager.get(Assets.START)){
+        addActor(forward = new OneSpriteStaticActor(Assets.manager.get(Assets.ARROW_TEXTURE)){
             @Override
             public void init() {
                 super.init();
                 setSize(100, 100);
                 setPosition(Globals.WORLD_WIDTH-getWidth()-10,10);
+                rotateBy(90);
                 addListener(new ClickListener(){
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {

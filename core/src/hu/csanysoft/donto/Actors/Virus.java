@@ -48,8 +48,8 @@ public class Virus extends MultiSpriteActor {
         float y = getY() + getHeight() / 2;
         float xcomp = gotox - x;
         float ycomp = gotoy - y;
-        float xspeed = xcomp / 100 > 0 ? xcomp / 100 > 0.5f ? 0.5f : xcomp / 100 : xcomp / 100 < -0.5f ? -0.5f : xcomp / 100;
-        float yspeed = ycomp / 100 > 0 ? ycomp / 100 > 0.5f ? 0.5f : ycomp / 100 : ycomp / 100 < -0.5f ? -0.5f : ycomp / 100;
+        float xspeed = xcomp / 50 > 0 ? xcomp / 50 > 1f ? 1f : xcomp / 50 : xcomp / 50 < -1f ? -1f : xcomp / 50;
+        float yspeed = ycomp / 50 > 0 ? ycomp / 50 > 1f ? 1f : ycomp / 50 : ycomp / 50 < -1f ? -1f : ycomp / 50;
         setX(getX()+ xspeed);
         setY(getY()+ yspeed);
         if(Math.abs(xcomp) < 1 && Math.abs(ycomp) < 1) newDest();

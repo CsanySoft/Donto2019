@@ -5,6 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.csanysoft.donto.Actors.BadVirus;
@@ -18,6 +20,7 @@ import hu.csanysoft.donto.MyBaseClasses.MyTextButton;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyStage;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteAnimatedActor;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanysoft.donto.MyBaseClasses.UI.MyButton;
 import hu.csanysoft.donto.Tutorial.TutorialScreen;
 
 public class MenuStage extends MyStage {
@@ -36,113 +39,66 @@ public class MenuStage extends MyStage {
                 setRotation((float) (Math.sin(elapsedTime)*10));
             }
         }; */
+
+        for(int i = 0; i < 10; i++) {
+            addActor(new GoodVirus(), 0);
+            addActor(new BadVirus(), 0);
+        }
+
         addActor(new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE),Globals.WORLD_WIDTH + 100, Globals.WORLD_HEIGHT + 100, 0, 0, 100), 0);
-        MyTextButton start = new MyTextButton("Start"){
+        TextButton start = new MyButton("",game.btnStart());
+        start.addListener(new InputListener() {
             @Override
-            public void init() {
-                super.init();
-                addListener(new InputListener(){
-                    @Override
-                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                        return true;
-                    }
-
-                    @Override
-                    public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                        game.setScreen(new GameScreen(game, true), true);
-                        super.touchUp(event, x, y, pointer, button);
-                    }
-                });
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
             }
-        };
 
-        MyTextButton tutorial = new MyTextButton("Tutorial") {
             @Override
-            protected void init() {
-                super.init();
-                addListener(new InputListener() {
-                    @Override
-                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                        return true;
-                    }
-
-                    @Override
-                    public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                        game.setScreen(new TutorialScreen(game),true);
-                        super.touchUp(event, x, y, pointer, button);
-                    }
-                });
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                game.setScreen(new GameScreen(game, false),true);
+                super.touchUp(event, x, y, pointer, button);
             }
-        };
+        });
+        start.setSize(start.getWidth()/2, start.getHeight()/2);
 
-        MyTextButton exit = new MyTextButton("Exit"){
+        TextButton tutorial = new MyButton("", game.btnTutorial());
+        tutorial.addListener(new InputListener() {
             @Override
-            public void init() {
-                super.init();
-                addListener(new InputListener(){
-                    @Override
-                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                        return true;
-                    }
-
-                    @Override
-                    public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                        System.exit(0);
-                        super.touchUp(event, x, y, pointer, button);
-                    }
-                });
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
             }
-        };
 
-      /*  OneSpriteStaticActor tutorial = new OneSpriteStaticActor(Assets.manager.get(Assets.GAMEOVER_TEXTURE)){
             @Override
-            public void init() {
-                super.init();
-                addListener(new InputListener(){
-                    @Override
-                    public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                        setTexture(Assets.manager.get(Assets.GAMEOVER_TEXTURE));
-                        return true;
-                    }
-
-                    @Override
-                    public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                        game.setScreen(new SelectScreen(game),true);
-                        super.touchUp(event, x, y, pointer, button);
-                    }
-                });
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                game.setScreen(new TutorialScreen(game),true);
+                super.touchUp(event, x, y, pointer, button);
             }
-        }; */
+        });
+        tutorial.setSize(tutorial.getWidth()/2, tutorial.getHeight()/2);
 
-       // addActor(logo);
-       // addActor(spiral);
+        TextButton exit = new MyButton("", game.btnExit());
+        exit.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.exit();
+            }
+        });
+        exit.setSize(exit.getWidth()/2, exit.getHeight()/2);
+
+
         addActor(tutorial, 10);
         addActor(start, 10);
         addActor(exit, 10);
 
-        //start.magnify(2);
-        //tutorial.magnify(2);
-        //exit.magnify(2);
-       // spiral.magnify(2);
 
-        start.setPosition(Globals.WORLD_WIDTH/2-start.getWidth()/2, 600);
-        exit.setPosition(Globals.WORLD_WIDTH/2-start.getWidth()/2, 600);
-        tutorial.setPosition(Globals.WORLD_WIDTH/2-start.getWidth()/2, 600);
-        //logo.setPositionCenterOfActorToCenterOfViewport();
-
-        tutorial.changePosition(0, -100);
-        exit.changePosition(0, -200);
-        //logo.changePosition(-200, +200);
-
-       // spiral.setZIndex(10);
-       // spiral.setOrigintoCenter();
-       // spiral.setPositionCenterOfActorToCenterOfViewport();
-       // spiral.setZIndex(0);
-
-        for(int i = 0; i < 10; i++) {
-            addActor(new GoodVirus());
-            addActor(new BadVirus());
-        }
+        start.setPosition(Globals.WORLD_WIDTH/2-start.getWidth()/2, Globals.WORLD_HEIGHT - start.getHeight() - 100);
+        tutorial.setPosition(Globals.WORLD_WIDTH/2-exit.getWidth()/2, start.getY() - 100);
+        exit.setPosition(Globals.WORLD_WIDTH/2-exit.getWidth()/2, 100);
     }
 
     @Override

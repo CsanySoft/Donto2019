@@ -79,7 +79,7 @@ public class GameStage extends MyStage {
                 Virus overlappedVirus = (Virus)actor;
 
                 //VÍRUS  VÍRUSSAL
-                for(Actor virus : getActors()) {
+                for(Actor virus : getActors().toArray()) {
                     if(actor instanceof GoodVirus && virus instanceof BadVirus) {
                         if(((GoodVirus) actor).overlaps((BadVirus) virus)) actor.remove();
                     } else if (actor instanceof BadVirus && virus instanceof GoodVirus) {
@@ -90,12 +90,17 @@ public class GameStage extends MyStage {
 
                 //ROBOT A VÍRUSSAL
                 if(robot.overlaps(overlappedVirus)) {
-                    if(overlappedVirus instanceof GoodVirus) die();
+                    if(overlappedVirus instanceof GoodVirus && !robot.hasShield) die();
                     else if(overlappedVirus instanceof BadVirus) {
-                        overlappedVirus.die();
-                        long f = Assets.manager.get(Assets.SPLASH_SOUND).play();
-                        Assets.manager.get(Assets.SPLASH_SOUND).setVolume(f, 40);
-                        overlappedVirus.remove();
+                        if(((BadVirus) overlappedVirus).needsABetterWeaponToDestroy && !robot.hasWeaponUpgrade) {
+                            robot.remove();
+                        } else {
+                            overlappedVirus.die();
+                            long f = Assets.manager.get(Assets.SPLASH_SOUND).play();
+                            Assets.manager.get(Assets.SPLASH_SOUND).setVolume(f, 40);
+                            overlappedVirus.remove();
+                        }
+
                     }
                 }
                 //ROBOT A VÍRUSSAL VÉGE

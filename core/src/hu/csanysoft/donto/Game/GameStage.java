@@ -108,6 +108,8 @@ public class GameStage extends MyStage {
             this.dispose();
         }
         //BADVIRUS SZÁMOLÁS VÉGE
+
+        setCameraZoomXY(robot.getX()+robot.getWidth()/2, robot.getY()+robot.getHeight()/2, 0.6f); //KAMERAMOZGÁS
     }
 
     public void die() {

@@ -95,6 +95,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> GAMEOVER_TEXTURE
             = new AssetDescriptor<Texture>("gameover.png", Texture.class);
 
+    public static final AssetDescriptor<Texture> WON_TEXTURE
+            = new AssetDescriptor<Texture>("won.png", Texture.class);
+
     public static final AssetDescriptor<Sound> SPLASH_SOUND
             = new AssetDescriptor<Sound>("sound/splash.mp3", Sound.class);
 
@@ -143,6 +146,7 @@ public class Assets {
         manager.load(WIN_SOUND);
         manager.load(LOST_SOUND);
         manager.load(SPLASH_ATLAS);
+        manager.load(WON_TEXTURE);
     }
 
     public static void afterLoaded() {

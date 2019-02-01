@@ -9,7 +9,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import hu.csanysoft.donto.Actors.*;
@@ -27,7 +29,7 @@ import static hu.csanysoft.donto.Global.Globals.random;
 
 public class GameStage extends MyStage {
 
-    public boolean left = false, right = false, forward = false;
+    public boolean left = false, right = false, forward = false, won = false;
     Robot robot;
     OneSpriteStaticActor background;
     public static int level = 1;
@@ -180,12 +182,18 @@ public class GameStage extends MyStage {
        /* for(Actor actor:getActors()) {
             if(actor instanceof BadVirus) badVirusCount++;
         } */
-        if(badVirusCount == 0) {
+        if(badVirusCount == 0 & !won) {
+            won = true;
             System.out.println("Következő szint");
             Assets.manager.get(Assets.WIN_SOUND).play();
-            level++;
-            game.setScreen(new GameScreen(game));
-            this.dispose();
+            //todo oide
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    level++;
+                    game.setScreen(new GameScreen(game));
+                }
+            }, 2);
         }
         //BADVIRUS SZÁMOLÁS VÉGE
 

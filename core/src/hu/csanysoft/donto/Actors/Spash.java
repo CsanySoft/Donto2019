@@ -13,6 +13,8 @@ public class Spash extends OneSpriteAnimatedActor {
         long f = Assets.manager.get(Assets.SPLASH_SOUND).play();
         setPosition(a.getX(), a.getY());
         setSize(a.getWidth(), a.getHeight());
+        magnify(2);
+        setOrigin(getWidth()/2, getHeight()/4);
         Assets.manager.get(Assets.SPLASH_SOUND).setVolume(f, 0.2f);
         setFps(20);
     }

@@ -23,6 +23,7 @@ public class ControlStage extends MyStage {
     MyLabel goodViruses;
     MyLabel badViruses;
     OneSpriteStaticActor gameover;
+    OneSpriteStaticActor won;
 
     public ControlStage(Donto game, GameStage gs) {
         super(new ExtendViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
@@ -44,6 +45,11 @@ public class ControlStage extends MyStage {
             }
         });
         addActor(gameover);
+        won = new OneSpriteStaticActor(Assets.manager.get(Assets.WON_TEXTURE));
+        won.magnify(.5f);
+        won.setPositionCenterOfActorToCenterOfViewport();
+        won.moveBy(8,Globals.WORLD_HEIGHT/2);
+        addActor(won);
         addActor(left = new OneSpriteStaticActor(Assets.manager.get(Assets.ARROW_TEXTURE)){
             @Override
             public void init() {
@@ -169,5 +175,6 @@ public class ControlStage extends MyStage {
     public void act(float delta) {
         super.act(delta);
         gameover.setVisible(!gameStage.robot.isVisible());
+        won.setVisible(gameStage.won);
     }
 }

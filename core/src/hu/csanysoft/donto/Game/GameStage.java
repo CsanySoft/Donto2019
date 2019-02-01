@@ -18,6 +18,7 @@ import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.Donto;
 
+import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyActor;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyStage;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteActor;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -76,6 +77,13 @@ public class GameStage extends MyStage {
         for (Actor actor : getActors()) {
             if(actor instanceof Virus) {
                 Virus overlappedVirus = (Virus)actor;
+                for(Actor virus : getActors()) {
+                    if(actor instanceof GoodVirus && virus instanceof BadVirus) {
+                        if(((GoodVirus) actor).overlaps((BadVirus) virus)) actor.remove();
+                    } else if (actor instanceof BadVirus && virus instanceof GoodVirus) {
+                        if(((BadVirus) actor).overlaps((GoodVirus) virus)) virus.remove();
+                    }
+                }
                 if(robot.overlaps(overlappedVirus)) {
                     if(overlappedVirus instanceof GoodVirus) die();
                     else if(overlappedVirus instanceof BadVirus) {

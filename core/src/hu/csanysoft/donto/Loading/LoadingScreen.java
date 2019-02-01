@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import hu.csanysoft.donto.Game.GameScreen;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Donto;
+import hu.csanysoft.donto.Menu.MenuScreen;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyActor;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyScreen;
 
@@ -111,7 +112,7 @@ public class LoadingScreen extends MyScreen {
 
         if(Assets.manager.update()) {
             if(Gdx.input.isTouched()) {
-                game.setScreen(new GameScreen(game), true);
+                game.setScreen(new MenuScreen(game), true);
             }
         }
 

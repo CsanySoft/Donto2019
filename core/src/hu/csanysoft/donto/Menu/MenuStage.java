@@ -30,7 +30,6 @@ public class MenuStage extends MyStage {
                 setRotation((float) (Math.sin(elapsedTime)*10));
             }
         }; */
-
         OneSpriteStaticActor start = new OneSpriteStaticActor(Assets.manager.get(Assets.START)){
             @Override
             public void init() {

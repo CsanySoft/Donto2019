@@ -78,13 +78,13 @@ public class TutorialStage extends MyStage {
         addActor(upgradeWeapon);
 
         lblBadVirus = new MyLabel("Bad virus. It kills good viruses. You need to kill it!", Donto.getColorLabelStyle(Color.WHITE));
-        lblGoodVirus = new MyLabel("Good virus. Don't kill it! It is killed by Pills.", Donto.getColorLabelStyle(Color.WHITE));
+        lblGoodVirus = new MyLabel("Good virus. Don't kill it! It is killed by Pills", Donto.getColorLabelStyle(Color.WHITE));
         lblRobot = new MyLabel("This is you. You move with the buttons at the bottom of the screen", Donto.getColorLabelStyle(Color.WHITE));
-        lblPill = new MyLabel("Pill. It kills good viruses.", Donto.getColorLabelStyle(Color.WHITE));
-        lblWhiteBloodCell = new MyLabel("White blood cell. It follows you and tries to kill you", Donto.getColorLabelStyle(Color.WHITE));
-        lblUpgradeShield = new MyLabel("This upgrade gives you a shield for 10 seconds.", Donto.getColorLabelStyle(Color.WHITE));
-        lblUpgradeSpeed = new MyLabel("This upgrade increases your speed.", Donto.getColorLabelStyle(Color.WHITE));
-        lblUpgradeWeapon = new MyLabel("This upgrade lets you kill stronger viruses.", Donto.getColorLabelStyle(Color.WHITE));
+        lblPill = new MyLabel("Pill. It kills viruses. You can destroy it", Donto.getColorLabelStyle(Color.WHITE));
+        lblWhiteBloodCell = new MyLabel("White blood cell. It follows you and it will kill you", Donto.getColorLabelStyle(Color.WHITE));
+        lblUpgradeShield = new MyLabel("This upgrade gives you a shield for 10 seconds", Donto.getColorLabelStyle(Color.WHITE));
+        lblUpgradeSpeed = new MyLabel("This upgrade increases your speed", Donto.getColorLabelStyle(Color.WHITE));
+        lblUpgradeWeapon = new MyLabel("This upgrade lets you kill stronger viruses", Donto.getColorLabelStyle(Color.WHITE));
 
 
 

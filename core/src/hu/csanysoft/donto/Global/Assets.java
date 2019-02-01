@@ -55,8 +55,8 @@ public class Assets {
     public static final AssetDescriptor<TextureAtlas> MOSQUITO_TEXTURE
             = new AssetDescriptor<TextureAtlas>("actors/mosquito.atlas", TextureAtlas.class);
 
-    public static final AssetDescriptor<TextureAtlas> BACKGROUND_TEXTURE
-            = new AssetDescriptor<TextureAtlas>("bacground.png", TextureAtlas.class);
+    public static final AssetDescriptor<Texture> BACKGROUND_TEXTURE
+            = new AssetDescriptor<Texture>("background.png", Texture.class);
 
 
     public static void prepare() {

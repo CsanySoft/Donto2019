@@ -62,6 +62,17 @@ public class Assets {
     public static final AssetDescriptor<TextureAtlas> VIRUSTAIL_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/virus/tailani.atlas", TextureAtlas.class);
 
+    //Chip fejlesztések
+
+    public static final AssetDescriptor<Texture> CHIPSPEED_TEXTURE
+            = new AssetDescriptor<Texture>("chips/speed.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> CHIPSHIELD_TEXTURE
+            = new AssetDescriptor<Texture>("chips/shield.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> CHIPARMOR_TEXTURE
+            = new AssetDescriptor<Texture>("chips/armor.png", Texture.class);
+
 
     public static final AssetDescriptor<TextureAtlas> ROBOT_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/android.atlas", TextureAtlas.class);
@@ -101,6 +112,10 @@ public class Assets {
         manager.load(BADVIRUS_TEXTURE);
         manager.load(GOODVIRUS_TEXTURE);
         manager.load(VIRUSTAIL_ATLAS);
+        //Chip fejlesztések
+        manager.load(CHIPSPEED_TEXTURE);
+        manager.load(CHIPSHIELD_TEXTURE);
+        manager.load(CHIPARMOR_TEXTURE);
 
         manager.load(ROBOT_ATLAS);
         manager.load(BACKGROUND_TEXTURE);

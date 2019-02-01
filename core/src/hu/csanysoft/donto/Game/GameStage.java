@@ -13,16 +13,20 @@ import hu.csanysoft.donto.Actors.GoodVirus;
 import hu.csanysoft.donto.Actors.Robot;
 import hu.csanysoft.donto.Actors.BadVirus;
 import hu.csanysoft.donto.Actors.Virus;
+import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.Donto;
 
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyStage;
+import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteActor;
+import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 
 
 public class GameStage extends MyStage {
 
     public boolean left = false, right = false, forward = false;
     Robot robot;
+    OneSpriteStaticActor background;
 
 
 
@@ -35,10 +39,14 @@ public class GameStage extends MyStage {
 
     @Override
     public void init() {
+        //PLAYER HOZZÁADÁSA
         robot = new Robot(50,50);
         addActor(robot);
         robot.setPositionCenterOfActorToCenterOfViewport();
-
+        background = new OneSpriteStaticActor(Assets.manager.get(Assets.BACKGROUND_TEXTURE));
+        //HÁTTÉR
+        background.setSize(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT);
+        addActor(background);
     }
 
     @Override

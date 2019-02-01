@@ -26,6 +26,8 @@ import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyStage;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteActor;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 
+import static hu.csanysoft.donto.Global.Globals.random;
+
 
 public class GameStage extends MyStage {
 
@@ -60,7 +62,10 @@ public class GameStage extends MyStage {
         background.moveBy(-500,-500);
         addActor(background);
         background.setZIndex(0);
-        addActor(new Pill(Globals.WORLD_WIDTH/2+200, Globals.WORLD_HEIGHT/2));
+        int pillCount = (int)Math.floor(level/5.0);
+        for(int i = 0; i < pillCount; i++){
+            addActor(new Pill(random(100,Globals.WORLD_WIDTH-100), random(100, Globals.WORLD_HEIGHT-100), random(0,365)));
+        }
     }
 
     @Override
@@ -166,7 +171,7 @@ public class GameStage extends MyStage {
         if(upgradeTimer >= 10) {
             upgradeTimer = 0;
             if(level < 5) addActor(new Upgrade(Globals.random.nextInt(2) +1));
-            else addActor(new Upgrade(Globals.random.nextInt(3)));
+            else addActor(new Upgrade(random.nextInt(3)));
         }
     }
 

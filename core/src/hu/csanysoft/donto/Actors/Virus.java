@@ -18,11 +18,16 @@ public class Virus extends OneSpriteAnimatedActor {
         dest = new float[2];
         setSize(64, 64);
         newDest();
+        addBaseCollisionRectangleShape();
     }
 
     public void newDest() {
         dest[0] = Globals.random.nextInt(Globals.WORLD_WIDTH - (int)getWidth()) + Globals.random.nextFloat();
         dest[1] = Globals.random.nextInt(Globals.WORLD_HEIGHT - (int)getHeight()) + Globals.random.nextFloat();
+    }
+
+    public void die() {
+        setVisible(false);
     }
 
     @Override

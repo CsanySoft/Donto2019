@@ -7,4 +7,5 @@ Zene
 Tutorial
 Modern kezelőelület, irányítás
 Egyedi animációk
+Izgalmas háttértörténet
 (élet értelme)

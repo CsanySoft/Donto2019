@@ -14,6 +14,14 @@ public class GoodVirus extends Virus {
         super();
         body = new OffsetSprite(Assets.manager.get(Assets.GOODVIRUS_TEXTURE), 0,0,64,64);
         addSprite(body);
-        setPosition(Globals.random.nextInt(GameStage.WORLD_BOUND_X / 2 - (int)getWidth() - 100) + GameStage.WORLD_BOUND_X / 2 + Globals.random.nextFloat() + 100, Globals.random.nextInt(GameStage.WORLD_BOUND_Y - (int)getHeight()) + Globals.random.nextFloat());
+        setY(Globals.random.nextInt(GameStage.WORLD_BOUND_Y - (int)getHeight()) + Globals.random.nextFloat());
+        if(Globals.random.nextBoolean()) {
+            setX(Globals.random(GameStage.WORLD_BOUND_X/ 7,GameStage.WORLD_BOUND_X / 7 * 2));
+        }
+        else if (Globals.random.nextBoolean()) {
+            setX(Globals.random(GameStage.WORLD_BOUND_X / 7 * 4,GameStage.WORLD_BOUND_X / 7 * 5));
+        } else {
+            setX(Globals.random(GameStage.WORLD_BOUND_X / 7 * 6 ,GameStage.WORLD_BOUND_X / 7 * 7));
+        }
     }
 }

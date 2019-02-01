@@ -19,6 +19,7 @@ import hu.csanysoft.donto.Actors.Robot;
 import hu.csanysoft.donto.Actors.BadVirus;
 import hu.csanysoft.donto.Actors.Upgrade;
 import hu.csanysoft.donto.Actors.Virus;
+import hu.csanysoft.donto.Actors.WhiteBloodCell;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.Donto;
@@ -47,7 +48,7 @@ public class GameStage extends MyStage {
         super(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         for (int i = 0; i < level; i++) {
             addActor(new BadVirus());
-            addActor(new BadVirus());
+            //addActor(new BadVirus());
             addActor(new GoodVirus());
         }
     }
@@ -71,6 +72,7 @@ public class GameStage extends MyStage {
         for(int i = 0; i < pillCount; i++){
             addActor(new Pill(random(100,WORLD_BOUND_X-100), random(100, WORLD_BOUND_Y-100), random(0,365)));
         }
+        addActor(new WhiteBloodCell(robot.getX()+300, robot.getY()+300, robot));
     }
 
     @Override
@@ -153,6 +155,13 @@ public class GameStage extends MyStage {
             else if (actor instanceof Pill){
                 if(robot.overlaps((MyActor) actor)) {
                     actor.remove();
+                }
+            }
+
+            //ROBOT A FEHÉR SEJTTEL
+            else if (actor instanceof WhiteBloodCell){
+                if(robot.overlaps((MyActor) actor)){
+                    die();
                 }
             }
         }

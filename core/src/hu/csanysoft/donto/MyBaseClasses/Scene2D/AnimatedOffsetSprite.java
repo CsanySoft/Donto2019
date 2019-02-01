@@ -41,6 +41,9 @@ public class AnimatedOffsetSprite extends OffsetSprite {
         init();
     }
 
+    public int getPrevFrame() {
+        return prevFrame;
+    }
 
     public void init() {
 

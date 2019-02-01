@@ -19,6 +19,14 @@ public class BadVirus extends Virus {
         if(needsABetterWeaponToDestroy) addSprite(new OffsetSprite(Assets.manager.get(Assets.CHIPWEAPON_TEXTURE), 15, 20, 30,30));
         body = new OffsetSprite(Assets.manager.get(Assets.BADVIRUS_TEXTURE), 0,0,64,64);
         addSprite(body);
-        setPosition(Globals.random.nextInt(GameStage.WORLD_BOUND_X / 2 - (int)getWidth()) + Globals.random.nextFloat(), Globals.random.nextInt(GameStage.WORLD_BOUND_Y - (int)getHeight()) + Globals.random.nextFloat());
+        setY(Globals.random.nextInt(GameStage.WORLD_BOUND_Y - (int)getHeight()) + Globals.random.nextFloat());
+        if(Globals.random.nextBoolean()) {
+            setX(Globals.random(0,GameStage.WORLD_BOUND_X / 7));
+        }
+        else if (Globals.random.nextBoolean()) {
+            setX(Globals.random(GameStage.WORLD_BOUND_X / 7 * 2,GameStage.WORLD_BOUND_X / 7 * 3));
+        } else {
+            setX(Globals.random(GameStage.WORLD_BOUND_X / 7 * 5 ,GameStage.WORLD_BOUND_X / 7 * 6));
+        }
     }
 }

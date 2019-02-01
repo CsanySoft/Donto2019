@@ -3,6 +3,7 @@ package hu.csanysoft.donto.Actors;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.AnimatedOffsetSprite;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MultiSpriteActor;
+import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyRectangle;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OffsetSprite;
 
 public class Robot extends MultiSpriteActor {
@@ -24,11 +25,13 @@ public class Robot extends MultiSpriteActor {
         super(width, height);
         body = new AnimatedOffsetSprite(Assets.manager.get(Assets.ROBOT_ATLAS), 0, 0, 50, 75);
         addSprite(body);
-        trail = new AnimatedOffsetSprite(Assets.manager.get(Assets.BUBBLE_ATLAS), 10, -60, 30, 80);
+        trail = new AnimatedOffsetSprite(Assets.manager.get(Assets.BUBBLE_ATLAS), 17, -20, 15, 25);
+        trail.setFps(90);
         addSprite(trail);
         shieldSprite = new OffsetSprite(Assets.manager.get(Assets.EXIT), -25,-20,100,100);
         addSprite(shieldSprite);
         addBaseCollisionRectangleShape();
+        addCollisionShape("fej", new MyRectangle(50,25, 0,50, 25,25));
         if(hasWeaponUpgrade) addSprite(new OffsetSprite(Assets.manager.get(Assets.CHIPWEAPON_TEXTURE), 10, 20, 30,30));
     }
 

@@ -41,6 +41,6 @@ public class Upgrade extends OneSpriteStaticActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        moveBy(0, -1);
+        moveBy(0, -0.5f);
     }
 }

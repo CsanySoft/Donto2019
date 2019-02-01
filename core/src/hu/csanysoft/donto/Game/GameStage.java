@@ -33,15 +33,12 @@ public class GameStage extends MyStage {
     OneSpriteStaticActor background;
     public static int level = 1;
     public int badVirusCount = 0;
+    public float upgradeTimer = 0;
 
 
     public GameStage(Donto game) {
         super(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
         addActor(new BadVirus());
-        Upgrade upgrade;
-        addActor(upgrade = new Upgrade(Upgrade.SPEED));
-        addActor(upgrade = new Upgrade(Upgrade.WEAPON));
-        addActor(upgrade = new Upgrade(Upgrade.SHIELD));
     }
 
 
@@ -62,6 +59,8 @@ public class GameStage extends MyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+        upgradeTimer+=delta;
+
         //KARAKTER MOZGÁSA
         if(forward || Gdx.input.isKeyPressed(Input.Keys.UP)){
             double rotation = Math.toRadians(robot.getRotation()+90);
@@ -141,6 +140,11 @@ public class GameStage extends MyStage {
         //BADVIRUS SZÁMOLÁS VÉGE
 
         setCameraZoomXY(robot.getX()+robot.getWidth()/2, robot.getY()+robot.getHeight()/2, 0.6f); //KAMERAMOZGÁS
+
+        if(upgradeTimer >= 10) {
+            upgradeTimer = 0;
+            addActor(new Upgrade(Globals.random.nextInt(4) - 1));
+        }
     }
 
     public void die() {

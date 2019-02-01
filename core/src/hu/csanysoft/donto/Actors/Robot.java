@@ -24,7 +24,7 @@ public class Robot extends MultiSpriteActor {
         super(width, height);
         body = new AnimatedOffsetSprite(Assets.manager.get(Assets.ROBOT_ATLAS), 0, 0, 50, 75);
         addSprite(body);
-        trail = new AnimatedOffsetSprite(Assets.manager.get(Assets.EXPLOSION_ATLAS), 10, -60, 30, 80);
+        trail = new AnimatedOffsetSprite(Assets.manager.get(Assets.BUBBLE_ATLAS), 10, -60, 30, 80);
         addSprite(trail);
         shieldSprite = new OffsetSprite(Assets.manager.get(Assets.EXIT), -25,-20,100,100);
         addSprite(shieldSprite);

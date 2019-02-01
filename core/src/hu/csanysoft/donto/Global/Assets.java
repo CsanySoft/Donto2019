@@ -73,6 +73,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> CHIPWEAPON_TEXTURE
             = new AssetDescriptor<Texture>("chips/weapon.png", Texture.class);
 
+    //Buborék atlasz
+    public static final AssetDescriptor<TextureAtlas> BUBBLE_ATLAS
+            = new AssetDescriptor<TextureAtlas>("animations/bubbles/bubbleani.atlas", TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> ROBOT_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/android.atlas", TextureAtlas.class);
@@ -116,6 +119,8 @@ public class Assets {
         manager.load(CHIPSPEED_TEXTURE);
         manager.load(CHIPSHIELD_TEXTURE);
         manager.load(CHIPWEAPON_TEXTURE);
+        //buborék
+        manager.load(BUBBLE_ATLAS);
 
         manager.load(ROBOT_ATLAS);
         manager.load(BACKGROUND_TEXTURE);

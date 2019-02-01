@@ -70,8 +70,8 @@ public class Assets {
     public static final AssetDescriptor<Texture> CHIPSHIELD_TEXTURE
             = new AssetDescriptor<Texture>("chips/shield.png", Texture.class);
 
-    public static final AssetDescriptor<Texture> CHIPARMOR_TEXTURE
-            = new AssetDescriptor<Texture>("chips/armor.png", Texture.class);
+    public static final AssetDescriptor<Texture> CHIPWEAPON_TEXTURE
+            = new AssetDescriptor<Texture>("chips/weapon.png", Texture.class);
 
 
     public static final AssetDescriptor<TextureAtlas> ROBOT_ATLAS
@@ -115,7 +115,7 @@ public class Assets {
         //Chip fejlesztések
         manager.load(CHIPSPEED_TEXTURE);
         manager.load(CHIPSHIELD_TEXTURE);
-        manager.load(CHIPARMOR_TEXTURE);
+        manager.load(CHIPWEAPON_TEXTURE);
 
         manager.load(ROBOT_ATLAS);
         manager.load(BACKGROUND_TEXTURE);

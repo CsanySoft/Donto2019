@@ -6,28 +6,29 @@ import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 
 public class Upgrade extends OneSpriteStaticActor {
 
-    public int type = 3;
+    public int type;
     public static final int WEAPON = 0, SPEED = 1, SHIELD = 2;
 
     public Upgrade(int type) {
-        super(Assets.manager.get(Assets.START));
+        super(Assets.manager.get(Assets.CHIPWEAPON_TEXTURE));
+        setSize(64,64);
+        this.type = type;
         switch (type) {
             case 0: {
-                setTexture(Assets.manager.get(Assets.START));
+                setTexture(Assets.manager.get(Assets.CHIPWEAPON_TEXTURE));
                 break;
             }
             case 1: {
-                setTexture(Assets.manager.get(Assets.EXIT));
+                setTexture(Assets.manager.get(Assets.CHIPSPEED_TEXTURE));
                 break;
             }
             case 2 : {
-                setTexture(Assets.manager.get(Assets.START_DOWN));
+                setTexture(Assets.manager.get(Assets.CHIPSHIELD_TEXTURE));
                 break;
             }
         }
         addBaseCollisionRectangleShape();
         setPosition(Globals.random(100, Globals.WORLD_WIDTH - 100), Globals.WORLD_HEIGHT + 100);
-        this.type = type;
     }
 
     public int getType() {

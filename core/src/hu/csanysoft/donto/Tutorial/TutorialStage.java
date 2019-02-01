@@ -43,24 +43,26 @@ public class TutorialStage extends MyStage {
 
         badVirus = new Image(Assets.manager.get(Assets.BADVIRUS_TEXTURE));
         goodVirus = new Image(Assets.manager.get(Assets.GOODVIRUS_TEXTURE));
-        //robot = new Image(Assets.manager.get(Assets.ROBOT_ATLAS).findRegion("1").getTexture());
+        robot = new Image(Assets.manager.get(Assets.ANDROID_TEXTURE));
         pill = new Image(Assets.manager.get(Assets.ANTIPILL_TEXTURE));
         whiteBloodCell = new Image(Assets.manager.get(Assets.WHITEBLOODCELL_TEXTURE));
         upgradeShield = new Image(Assets.manager.get(Assets.CHIPSHIELD_TEXTURE));
         upgradeSpeed = new Image(Assets.manager.get(Assets.CHIPSPEED_TEXTURE));
         upgradeWeapon = new Image(Assets.manager.get(Assets.CHIPWEAPON_TEXTURE));
 
-        badVirus.setSize(64, 64);
-        goodVirus.setSize(64, 64);
-        pill.setSize(50, 100);
-        whiteBloodCell.setSize(64, 64);
-        upgradeShield.setSize(64,64);
-        upgradeSpeed.setSize(64,64);
-        upgradeWeapon.setSize(64,64);
+        badVirus.setSize(64/1.5f, 64/1.5f);
+        goodVirus.setSize(64/1.5f, 64/1.5f);
+        robot.setSize(50/1.5f, 64/1.5f);
+        pill.setSize(50/1.5f, 100/1.5f);
+        whiteBloodCell.setSize(64/1.5f, 64/1.5f);
+        upgradeShield.setSize(64/1.5f,64/1.5f);
+        upgradeSpeed.setSize(64/1.5f,64/1.5f);
+        upgradeWeapon.setSize(64/1.5f,64/1.5f);
 
         badVirus.setPosition(100, Globals.WORLD_HEIGHT - badVirus.getHeight() - 15);
         goodVirus.setPosition(100, badVirus.getY() - goodVirus.getHeight() - 15);
-        pill.setPosition(100, goodVirus.getY() - pill.getHeight() - 15);
+        robot.setPosition(100, goodVirus.getY() - robot.getHeight() - 15);
+        pill.setPosition(100, robot.getY() - pill.getHeight() - 15);
         whiteBloodCell.setPosition(100, pill.getY() - whiteBloodCell.getHeight() - 15);
         upgradeShield.setPosition(100, whiteBloodCell.getY() - upgradeShield.getHeight() - 15);
         upgradeSpeed.setPosition(100, upgradeShield.getY() - upgradeSpeed.getHeight() - 15);
@@ -68,7 +70,7 @@ public class TutorialStage extends MyStage {
 
         addActor(badVirus);
         addActor(goodVirus);
-        //addActor(robot);
+        addActor(robot);
         addActor(pill);
         addActor(whiteBloodCell);
         addActor(upgradeShield);
@@ -77,6 +79,7 @@ public class TutorialStage extends MyStage {
 
         lblBadVirus = new MyLabel("Bad virus. It kills good viruses. You need to kill it!", Donto.getColorLabelStyle(Color.WHITE));
         lblGoodVirus = new MyLabel("Good virus. Don't kill it! It is killed by Pills.", Donto.getColorLabelStyle(Color.WHITE));
+        lblRobot = new MyLabel("This is you. You move with the buttons at the bottom of the screen", Donto.getColorLabelStyle(Color.WHITE));
         lblPill = new MyLabel("Pill. It kills good viruses.", Donto.getColorLabelStyle(Color.WHITE));
         lblWhiteBloodCell = new MyLabel("White blood cell. It follows you and tries to kill you", Donto.getColorLabelStyle(Color.WHITE));
         lblUpgradeShield = new MyLabel("This upgrade gives you a shield for 10 seconds.", Donto.getColorLabelStyle(Color.WHITE));
@@ -87,6 +90,7 @@ public class TutorialStage extends MyStage {
 
         lblBadVirus.setPosition(badVirus.getX() + badVirus.getWidth() + 20, badVirus.getY() + badVirus.getHeight() / 2 - 15);
         lblGoodVirus.setPosition(goodVirus.getX() + goodVirus.getWidth() + 20, goodVirus.getY() + goodVirus.getHeight() / 2 - 15);
+        lblRobot.setPosition(goodVirus.getX() + goodVirus.getWidth() + 20, robot.getY() + robot.getHeight() / 2 - 15);
         lblPill.setPosition(goodVirus.getX() + goodVirus.getWidth() + 20, pill.getY() + pill.getHeight() / 2 - 15);
         lblWhiteBloodCell.setPosition(whiteBloodCell.getX() + whiteBloodCell.getWidth() + 20, whiteBloodCell.getY() + whiteBloodCell.getHeight() / 2 - 15);
         lblUpgradeShield.setPosition(upgradeShield.getX() + upgradeShield.getWidth() + 20, upgradeShield.getY() + upgradeShield.getHeight() / 2 - 15);
@@ -96,11 +100,16 @@ public class TutorialStage extends MyStage {
 
         addActor(lblBadVirus);
         addActor(lblGoodVirus);
+        addActor(lblRobot);
         addActor(lblPill);
         addActor(lblWhiteBloodCell);
         addActor(lblUpgradeShield);
         addActor(lblUpgradeSpeed);
         addActor(lblUpgradeWeapon);
+
+        MyLabel tutorial = new MyLabel("Try to kill all the bad viruses before the time runs out or the good viruses die!", Donto.getColorLabelStyle(Color.WHITE));
+        tutorial.setPosition(100, upgradeWeapon.getY() - 100);
+        addActor(tutorial);
 
 
         addActor(new MyTextButton("Vissza"){

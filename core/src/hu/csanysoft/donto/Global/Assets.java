@@ -92,6 +92,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> BACKGROUND_TEXTURE
             = new AssetDescriptor<Texture>("background.png", Texture.class);
 
+    public static final AssetDescriptor<Texture> BACKGROUNDWATER_TEXTURE
+            = new AssetDescriptor<Texture>("water_bg.png", Texture.class);
+
     public static final AssetDescriptor<Texture> ARROW_TEXTURE
             = new AssetDescriptor<Texture>("ui/arrow.png", Texture.class);
 
@@ -100,6 +103,9 @@ public class Assets {
 
     public static final AssetDescriptor<Texture> WHITEBLOODCELL_TEXTURE
             = new AssetDescriptor<Texture>("animations/whiteBloodCells.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> ANDROID_TEXTURE
+            = new AssetDescriptor<Texture>("actors/android.png", Texture.class);
 
     public static final AssetDescriptor<Sound> SPLASH_SOUND
             = new AssetDescriptor<Sound>("sound/splash.mp3", Sound.class);
@@ -131,6 +137,7 @@ public class Assets {
         manager.load(ANTIPILL_TEXTURE);
         manager.load(WHITEBLOOD_ATLAS);
         manager.load(WHITEBLOODCELL_TEXTURE);
+        manager.load(ANDROID_TEXTURE);
         //Ellenfelek
         manager.load(BADVIRUS_TEXTURE);
         manager.load(GOODVIRUS_TEXTURE);
@@ -144,6 +151,7 @@ public class Assets {
 
         manager.load(ROBOT_ATLAS);
         manager.load(BACKGROUND_TEXTURE);
+        manager.load(BACKGROUNDWATER_TEXTURE);
         manager.load(EXPLOSION_ATLAS);
         manager.load(ARROW_TEXTURE);
         manager.load(SPLASH_SOUND);

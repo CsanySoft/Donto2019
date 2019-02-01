@@ -46,7 +46,7 @@ public class GameStage extends MyStage {
         //HÁTTÉR
         background.setSize(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT);
         background.setZIndex(0);
-        addActor(background);
+        //addActor(background);
     }
 
     @Override

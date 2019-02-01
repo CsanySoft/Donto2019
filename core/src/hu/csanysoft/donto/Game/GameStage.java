@@ -38,6 +38,8 @@ public class GameStage extends MyStage {
     public int badVirusCount = 0;
     public float upgradeTimer = 0;
 
+    public static int WORLD_BOUND_X = 1920, WORLD_BOUND_Y = 1080;
+
 
     public GameStage(Donto game) {
         super(new StretchViewport(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT, new OrthographicCamera(Globals.WORLD_WIDTH, Globals.WORLD_HEIGHT)), new SpriteBatch(), game);
@@ -54,17 +56,17 @@ public class GameStage extends MyStage {
         //PLAYER HOZZÁADÁSA
         robot = new Robot(50,50);
         addActor(robot);
-        robot.setPosition(Globals.WORLD_WIDTH/2, Globals.WORLD_HEIGHT/2);
+        robot.setPosition(WORLD_BOUND_X/2, WORLD_BOUND_Y/2);
         robot.setZIndex(10);
         //HÁTTÉR
         background = new OneSpriteStaticActor(Assets.manager.get(Assets.BACKGROUND_TEXTURE));
-        background.setSize(Globals.WORLD_WIDTH+1000, Globals.WORLD_HEIGHT+990);
-        background.moveBy(-500,-500);
+        background.setSize(WORLD_BOUND_X, WORLD_BOUND_Y);
+        background.setPositionCenterOfActorToCenterOfViewport();
         addActor(background);
         background.setZIndex(0);
         int pillCount = (int)Math.floor(level/5.0);
         for(int i = 0; i < pillCount; i++){
-            addActor(new Pill(random(100,Globals.WORLD_WIDTH-100), random(100, Globals.WORLD_HEIGHT-100), random(0,365)));
+            addActor(new Pill(random(100,WORLD_BOUND_X-100), random(100, WORLD_BOUND_Y-100), random(0,365)));
         }
     }
 
@@ -77,9 +79,9 @@ public class GameStage extends MyStage {
             double rotation = Math.toRadians(robot.getRotation()+90);
             robot.moveBy((robot.baseSpeed+robot.speedUpgrade)*(float)Math.cos(rotation), (robot.baseSpeed+robot.speedUpgrade)*(float)Math.sin(rotation));
             if(robot.getX() < 0) robot.setX(0);
-            if(robot.getX()+robot.getWidth() > Globals.WORLD_WIDTH) robot.setX(Globals.WORLD_WIDTH-robot.getWidth());
+            if(robot.getX()+robot.getWidth() > WORLD_BOUND_X) robot.setX(WORLD_BOUND_X-robot.getWidth());
             if(robot.getY() < 0) robot.setY(0);
-            if(robot.getY()+robot.getHeight() > Globals.WORLD_HEIGHT) robot.setY(Globals.WORLD_HEIGHT-robot.getHeight());
+            if(robot.getY()+robot.getHeight() > WORLD_BOUND_Y) robot.setY(WORLD_BOUND_Y-robot.getHeight());
         }
         if(left  || Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             robot.rotateBy(robot.baseSpeed+robot.speedUpgrade/2);

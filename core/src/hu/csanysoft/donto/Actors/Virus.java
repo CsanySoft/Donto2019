@@ -31,8 +31,8 @@ public class Virus extends MultiSpriteActor {
     }
 
     public void newDest() {
-        dest[0] = Globals.random.nextInt(Globals.WORLD_WIDTH - (int)getWidth()) + Globals.random.nextFloat();
-        dest[1] = Globals.random.nextInt(Globals.WORLD_HEIGHT - (int)getHeight()) + Globals.random.nextFloat();
+        dest[0] = Globals.random.nextInt(GameStage.WORLD_BOUND_X - (int)getWidth()) + Globals.random.nextFloat();
+        dest[1] = Globals.random.nextInt(GameStage.WORLD_BOUND_Y - (int)getHeight()) + Globals.random.nextFloat();
     }
 
     public void die() {

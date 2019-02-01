@@ -10,6 +10,12 @@ public class Robot extends MultiSpriteActor {
     OffsetSprite body;
     AnimatedOffsetSprite propeller, trail;
 
+    public boolean hasSpeedUpgrade = false;
+    public boolean hasWeaponUpgrade = false;
+    public boolean hasShield = false;
+
+    float shieldTimeLeft = 30;
+
     float lastX = 0, lastY = 0;
 
     public Robot(float width, float height) {
@@ -37,5 +43,12 @@ public class Robot extends MultiSpriteActor {
         lastX = getX();
         lastY = getY();
 
+        if(hasShield){
+            shieldTimeLeft -= delta;
+            if(shieldTimeLeft < 0){
+                hasShield = false;
+                shieldTimeLeft = 30;
+            }
+        }
     }
 }

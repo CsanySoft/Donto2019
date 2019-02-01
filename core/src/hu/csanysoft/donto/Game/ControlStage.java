@@ -51,7 +51,7 @@ public class ControlStage extends MyStage {
             public void init() {
                 super.init();
                 setSize(100, 100);
-                setPosition(10,10);
+                setPosition(120,10);
                 addListener(new ClickListener(){
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -72,7 +72,7 @@ public class ControlStage extends MyStage {
             public void init() {
                 super.init();
                 setSize(100, 100);
-                setPosition(10,10);
+                setPosition(Globals.WORLD_WIDTH-getWidth()-10,10);
                 addListener(new ClickListener(){
                     @Override
                     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {

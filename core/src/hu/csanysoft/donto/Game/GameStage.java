@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import hu.csanysoft.donto.Actors.GoodVirus;
+import hu.csanysoft.donto.Actors.Pill;
 import hu.csanysoft.donto.Actors.Popup;
 import hu.csanysoft.donto.Actors.Robot;
 import hu.csanysoft.donto.Actors.BadVirus;
@@ -59,6 +60,7 @@ public class GameStage extends MyStage {
         background.moveBy(-500,-500);
         addActor(background);
         background.setZIndex(0);
+        addActor(new Pill(Globals.WORLD_WIDTH/2+200, Globals.WORLD_HEIGHT/2));
     }
 
     @Override
@@ -93,6 +95,11 @@ public class GameStage extends MyStage {
                         if(((GoodVirus) actor).overlaps((BadVirus) virus)) actor.remove();
                     } else if (actor instanceof BadVirus && virus instanceof GoodVirus) {
                         if(((BadVirus) actor).overlaps((GoodVirus) virus)) virus.remove();
+                    }
+                    if(virus instanceof Pill){
+                        if(((Virus) actor).overlaps((MyActor) virus)){
+                            actor.remove();
+                        }
                     }
                 }
                 //VÍRUS A VÍRUSSAL VÉGE
@@ -131,6 +138,13 @@ public class GameStage extends MyStage {
                 }
             }
             //ROBOT AZ UPGRADEVAL VÉGE
+
+            //ROBOT A PIRULÁVAL
+            else if (actor instanceof Pill){
+                if(robot.overlaps((MyActor) actor)) {
+                    actor.remove();
+                }
+            }
         }
         //ÜTKÖZÉSVIZSGÁLAT VÉGE
 

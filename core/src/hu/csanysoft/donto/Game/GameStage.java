@@ -65,6 +65,7 @@ public class GameStage extends MyStage {
                     if(overlappedVirus instanceof GoodVirus) die();
                     else if(overlappedVirus instanceof BadVirus) {
                         overlappedVirus.die();
+                        overlappedVirus.remove();
                     }
                 }
             }

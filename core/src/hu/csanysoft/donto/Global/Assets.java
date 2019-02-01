@@ -49,6 +49,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> ANTIPILL_TEXTURE
             = new AssetDescriptor<Texture>("antipill.png", Texture.class);
 
+    public static final AssetDescriptor<TextureAtlas> WHITEBLOOD_ATLAS//fehérvér sejt
+            = new AssetDescriptor<TextureAtlas>("animations/whiteBloodCellsani.atlas", TextureAtlas.class);
+
     //Ellenfelek
 
     public static final AssetDescriptor<Texture> BADVIRUS_TEXTURE
@@ -123,6 +126,7 @@ public class Assets {
         manager.load(EXIT);
         manager.load(EXIT_DOWN);
         manager.load(ANTIPILL_TEXTURE);
+        manager.load(WHITEBLOOD_ATLAS);
         //Ellenfelek
         manager.load(BADVIRUS_TEXTURE);
         manager.load(GOODVIRUS_TEXTURE);

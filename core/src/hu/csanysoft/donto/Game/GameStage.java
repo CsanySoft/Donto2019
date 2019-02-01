@@ -139,9 +139,6 @@ public class GameStage extends MyStage {
         }
         if(closest!= null){
             closestArrow.setRotation((float)Math.toDegrees(Math.atan2((closest.getY()-robot.getY()),(closest.getX()-robot.getX())))-90);
-            //System.out.println("CLOSEST: "+closest.getX()+" - "+closest.getY());
-            //System.out.println("PLAYER: "+robot.getX()+" - "+robot.getY());
-            System.out.println("DIFF x:"+(closest.getX()-robot.getX())+" y:"+(closest.getY()-robot.getY())+" rotate: "+Math.toDegrees(Math.atan2((closest.getY()-robot.getY()),(closest.getX()-robot.getX()))));
         }
 
 

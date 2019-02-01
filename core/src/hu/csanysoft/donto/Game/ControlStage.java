@@ -110,13 +110,15 @@ public class ControlStage extends MyStage {
             @Override
             public void init() {
                 super.init();
-                setPosition(10, Globals.WORLD_HEIGHT-getHeight()-10);
+                setPosition(10, Globals.WORLD_HEIGHT-getHeight()-60);
             }
 
             @Override
             public void act(float delta) {
                 super.act(delta);
-                setText(gameStage.robot.shieldTimeLeft != 0 ? String.format("Shield time left: %.0f s", gameStage.robot.shieldTimeLeft) : "");
+                if(gameStage.robot.hasShield){
+                    setText("shield time left: "+((int)(gameStage.robot.shieldTimeLeft*10) / 10.0));
+                }else setText("");
             }
         });
     }

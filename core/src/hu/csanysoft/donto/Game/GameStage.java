@@ -182,11 +182,13 @@ public class GameStage extends MyStage {
     @Override
     public boolean keyDown(int keyCode) {
         if(keyCode == Input.Keys.S){
-            robot.speedUpgrade++;
+            robot.addUpgrade(Upgrade.SPEED);
         }
         if(keyCode == Input.Keys.D){
-            robot.hasShield = true;
-            robot.shieldTimeLeft += 10;
+            robot.addUpgrade(Upgrade.SHIELD);
+        }
+        if(keyCode == Input.Keys.F){
+            robot.addUpgrade(Upgrade.WEAPON);
         }
 
 

@@ -16,7 +16,7 @@ public class Robot extends MultiSpriteActor {
     public static boolean hasWeaponUpgrade = false;
     public static boolean hasShield = false;
 
-    public static float shieldTimeLeft = 10;
+    public static float shieldTimeLeft = 0;
 
     float lastX = 0, lastY = 0;
 

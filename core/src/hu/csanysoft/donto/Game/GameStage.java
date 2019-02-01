@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import hu.csanysoft.donto.Actors.GoodVirus;
@@ -163,6 +165,7 @@ public class GameStage extends MyStage {
         }
         if(badVirusCount == 0) {
             System.out.println("Következő szint");
+            Assets.manager.get(Assets.WIN_SOUND).play();
             level++;
             game.setScreen(new GameScreen(game));
             this.dispose();
@@ -179,7 +182,11 @@ public class GameStage extends MyStage {
     }
 
     public void die() {
+        if(!robot.isVisible())
+            return;
         robot.setVisible(false);
+        long f = Assets.manager.get(Assets.LOST_SOUND).play();
+        Assets.manager.get(Assets.LOST_SOUND).setVolume(f, 50);
     }
 
     @Override

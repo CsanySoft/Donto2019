@@ -22,15 +22,10 @@ public class Assets {
     static final FreetypeFontLoader.FreeTypeFontLoaderParameter fontParameter = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 
     static {
-
         fontParameter.fontFileName = "arial.ttf";
-
         fontParameter.fontParameters.size = 30;
-
         fontParameter.fontParameters.characters = CHARS;
-
         fontParameter.fontParameters.color = Color.WHITE;
-
     }
 
     public static final AssetDescriptor<BitmapFont> ARIAL_30_FONT
@@ -89,9 +84,17 @@ public class Assets {
     public static final AssetDescriptor<Texture> ARROW_TEXTURE
             = new AssetDescriptor<Texture>("ui/arrow.png", Texture.class);
 
+    public static final AssetDescriptor<Texture> GAMEOVER_TEXTURE
+            = new AssetDescriptor<Texture>("gameover.png", Texture.class);
+
     public static final AssetDescriptor<Sound> SPLASH_SOUND
             = new AssetDescriptor<Sound>("sound/splash.mp3", Sound.class);
 
+    public static final AssetDescriptor<Sound> WIN_SOUND
+            = new AssetDescriptor<Sound>("sound/win.mp3", Sound.class);
+
+    public static final AssetDescriptor<Sound> LOST_SOUND
+            = new AssetDescriptor<Sound>("sound/lose.mp3", Sound.class);
 
     public static void prepare() {
         manager = new AssetManager();
@@ -127,6 +130,9 @@ public class Assets {
         manager.load(EXPLOSION_ATLAS);
         manager.load(ARROW_TEXTURE);
         manager.load(SPLASH_SOUND);
+        manager.load(GAMEOVER_TEXTURE);
+        manager.load(WIN_SOUND);
+        manager.load(LOST_SOUND);
     }
 
     public static void afterLoaded() {

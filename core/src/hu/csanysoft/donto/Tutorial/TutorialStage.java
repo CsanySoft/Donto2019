@@ -6,15 +6,16 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.csanysoft.donto.Actors.MovingBackground;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.Donto;
-import hu.csanysoft.donto.MyBaseClasses.MyTextButton;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyStage;
-import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanysoft.donto.MyBaseClasses.UI.MyButton;
 import hu.csanysoft.donto.MyBaseClasses.UI.MyLabel;
 
 public class TutorialStage extends MyStage {
@@ -30,17 +31,7 @@ public class TutorialStage extends MyStage {
     }
 
     public void init() {
-    /*    OneSpriteStaticActor background = new OneSpriteStaticActor(Assets.manager.get(Assets.SPACE_TEXTURE)){
-            @Override
-            public void act(float delta) {
-                super.act(delta);
-                rotateBy(delta*20);
-            }
-
-        };
-        addActor(background);
-*/
-
+        addActor(new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE),Globals.WORLD_WIDTH + 600, Globals.WORLD_HEIGHT + 600, -500, -500, 100), 5);
         badVirus = new Image(Assets.manager.get(Assets.BADVIRUS_TEXTURE));
         goodVirus = new Image(Assets.manager.get(Assets.GOODVIRUS_TEXTURE));
         robot = new Image(Assets.manager.get(Assets.ANDROID_TEXTURE));
@@ -112,27 +103,18 @@ public class TutorialStage extends MyStage {
         addActor(tutorial);
 
 
-        addActor(new MyTextButton("Back"){
+        TextButton back = new MyButton("", game.btnBack());
+        back.setSize(back.getWidth()/2, back.getHeight()/2);
+        back.setPosition(Globals.WORLD_WIDTH/2-back.getWidth()/2, 50);
+        back.addListener(new ClickListener(){
             @Override
-            protected void init() {
-                super.init();
-                setPosition(Globals.WORLD_WIDTH/2-getWidth()/2, 50);
-                addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        game.setScreenBackByStackPop();
-                    }
-                });
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                game.setScreenBackByStackPop();
             }
         });
+        addActor(back, 100);
 
-
-
-
-        float size = (float)Math.sqrt(Globals.WORLD_WIDTH*Globals.WORLD_WIDTH + Globals.WORLD_HEIGHT*Globals.WORLD_HEIGHT);
-       // background.setSize(size,size);
-       // background.setPositionCenterOfActorToCenterOfViewport();
     }
 
     @Override

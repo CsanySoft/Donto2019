@@ -34,17 +34,33 @@ public class Assets {
     public static final AssetDescriptor<Texture> EMPTY_TEXTURE
             = new AssetDescriptor<Texture>("zolipls.png", Texture.class);
 
+    //Gombok
     public static final AssetDescriptor<Texture> START
-            = new AssetDescriptor<Texture>("start_red.png", Texture.class);
+            = new AssetDescriptor<Texture>("buttons/start.png", Texture.class);
 
     public static final AssetDescriptor<Texture> START_DOWN
-            = new AssetDescriptor<Texture>("start_down_red.png", Texture.class);
+            = new AssetDescriptor<Texture>("buttons/start_down.png", Texture.class);
 
     public static final AssetDescriptor<Texture> EXIT
-            = new AssetDescriptor<Texture>("exit_red.png", Texture.class);
+            = new AssetDescriptor<Texture>("buttons/exit.png", Texture.class);
 
     public static final AssetDescriptor<Texture> EXIT_DOWN
-            = new AssetDescriptor<Texture>("exit_down_red.png", Texture.class);
+            = new AssetDescriptor<Texture>("buttons/exit_down.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> TUTORIAL
+            = new AssetDescriptor<Texture>("buttons/tutorial.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> TUTORIAL_DOWN
+            = new AssetDescriptor<Texture>("buttons/tutorial_down.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> BACK
+            = new AssetDescriptor<Texture>("buttons/back.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> BACK_DOWN
+            = new AssetDescriptor<Texture>("buttons/back_down.png", Texture.class);
+
+
+
 
     public static final AssetDescriptor<Texture> ANTIPILL_TEXTURE
             = new AssetDescriptor<Texture>("antipill.png", Texture.class);
@@ -98,6 +114,9 @@ public class Assets {
     public static final AssetDescriptor<Texture> ARROW_TEXTURE
             = new AssetDescriptor<Texture>("ui/arrow.png", Texture.class);
 
+    public static final AssetDescriptor<Texture> NAVIARROW_TEXTURE
+            = new AssetDescriptor<Texture>("ui/navigation_arrow.png", Texture.class);
+
     public static final AssetDescriptor<Texture> GAMEOVER_TEXTURE
             = new AssetDescriptor<Texture>("gameover.png", Texture.class);
 
@@ -133,10 +152,16 @@ public class Assets {
 
         manager.load(ARIAL_30_FONT);
         manager.load(EMPTY_TEXTURE);
+        //Gombok
         manager.load(START);
         manager.load(START_DOWN);
         manager.load(EXIT);
         manager.load(EXIT_DOWN);
+        manager.load(TUTORIAL);
+        manager.load(TUTORIAL_DOWN);
+        manager.load(BACK);
+        manager.load(BACK_DOWN);
+
         manager.load(ANTIPILL_TEXTURE);
         manager.load(WHITEBLOOD_ATLAS);
         manager.load(WHITEBLOODCELL_TEXTURE);
@@ -158,6 +183,7 @@ public class Assets {
 
         manager.load(EXPLOSION_ATLAS);
         manager.load(ARROW_TEXTURE);
+        manager.load(NAVIARROW_TEXTURE);
         manager.load(SPLASH_SOUND);
         manager.load(GAMEOVER_TEXTURE);
         manager.load(WIN_SOUND);

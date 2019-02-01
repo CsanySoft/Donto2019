@@ -122,6 +122,15 @@ public class Donto extends Game {
 		return textButtonStyle;
 	}
 
+	public TextButton.TextButtonStyle btnBack() {
+		TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+		textButtonStyle.font = Assets.manager.get(Assets.ARIAL_30_FONT);
+		textButtonStyle.up = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.BACK)));
+		textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.BACK)));
+		textButtonStyle.down = new TextureRegionDrawable(new TextureRegion(Assets.manager.get(Assets.BACK_DOWN)));
+		return textButtonStyle;
+	}
+
 	public void setScreenBackByStackPop() {
 		if (backButtonStack.size() > 1) {
 			try {

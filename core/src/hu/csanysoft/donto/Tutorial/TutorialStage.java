@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -16,6 +17,7 @@ import hu.csanysoft.donto.Donto;
 import hu.csanysoft.donto.MyBaseClasses.MyTextButton;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.MyStage;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanysoft.donto.MyBaseClasses.UI.MyButton;
 import hu.csanysoft.donto.MyBaseClasses.UI.MyLabel;
 
 public class TutorialStage extends MyStage {
@@ -113,21 +115,17 @@ public class TutorialStage extends MyStage {
         addActor(tutorial);
 
 
-        addActor(new MyTextButton("Back"){
+        TextButton back = new MyButton("", game.btnBack());
+        back.setSize(back.getWidth()/2, back.getHeight()/2);
+        back.setPosition(Globals.WORLD_WIDTH/2-back.getWidth()/2, 50);
+        back.addListener(new ClickListener(){
             @Override
-            protected void init() {
-                super.init();
-                setPosition(Globals.WORLD_WIDTH/2-getWidth()/2, 50);
-                addListener(new ClickListener(){
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        game.setScreenBackByStackPop();
-                    }
-                });
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                game.setScreenBackByStackPop();
             }
         });
-
+        addActor(back, 100);
 
 
 

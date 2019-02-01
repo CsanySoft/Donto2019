@@ -37,11 +37,8 @@ public class GameStage extends MyStage {
         addActor(new BadVirus());
         Upgrade upgrade;
         addActor(upgrade = new Upgrade(Upgrade.SPEED));
-        upgrade.setPosition(300, 300);
         addActor(upgrade = new Upgrade(Upgrade.WEAPON));
-        upgrade.setPosition(600, 600);
         addActor(upgrade = new Upgrade(Upgrade.SHIELD));
-        upgrade.setPosition(500, 500);
     }
 
 

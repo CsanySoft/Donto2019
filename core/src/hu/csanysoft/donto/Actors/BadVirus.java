@@ -10,7 +10,7 @@ public class BadVirus extends Virus {
     public boolean needsABetterWeaponToDestroy ;
 
     public BadVirus() {
-        super(Assets.manager.get(Assets.MOSQUITO_TEXTURE));
+        super(Assets.manager.get(Assets.EXPLOSION_ATLAS));
         needsABetterWeaponToDestroy = Globals.random(0, 20) < 4;
     }
 }

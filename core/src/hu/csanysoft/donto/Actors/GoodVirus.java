@@ -6,6 +6,6 @@ import hu.csanysoft.donto.Global.Assets;
 
 public class GoodVirus extends Virus {
     public GoodVirus() {
-        super(Assets.manager.get(Assets.MOSQUITO_TEXTURE));
+        super(Assets.manager.get(Assets.EXPLOSION_ATLAS));
     }
 }

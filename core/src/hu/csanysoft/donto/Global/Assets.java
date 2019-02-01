@@ -53,11 +53,11 @@ public class Assets {
 
     //Ellenfelek
 
-    public static final AssetDescriptor<TextureAtlas> BADVIRUS_TEXTURE
-            = new AssetDescriptor<TextureAtlas>("animations/virus/red.png", TextureAtlas.class);
+    public static final AssetDescriptor<Texture> BADVIRUS_TEXTURE
+            = new AssetDescriptor<Texture>("animations/virus/red.png", Texture.class);
 
-    public static final AssetDescriptor<TextureAtlas> GOODVIRUS_TEXTURE
-            = new AssetDescriptor<TextureAtlas>("animations/virus/green.png", TextureAtlas.class);
+    public static final AssetDescriptor<Texture> GOODVIRUS_TEXTURE
+            = new AssetDescriptor<Texture>("animations/virus/green.png", Texture.class);
 
     public static final AssetDescriptor<TextureAtlas> VIRUSTAIL_ATLAS
             = new AssetDescriptor<TextureAtlas>("animations/virus/tailani.atlas", TextureAtlas.class);

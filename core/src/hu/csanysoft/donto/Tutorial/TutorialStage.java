@@ -68,7 +68,7 @@ public class TutorialStage extends MyStage {
         addActor(upgradeSpeed);
         addActor(upgradeWeapon);
 
-        lblBadVirus = new MyLabel("Bad virus. It kills good viruses. You need to kill it!", Donto.getColorLabelStyle(Color.WHITE));
+        lblBadVirus = new MyLabel("Bad virus. You need to kill them! Your mission is over if you've killed them all", Donto.getColorLabelStyle(Color.WHITE));
         lblGoodVirus = new MyLabel("Good virus. Don't kill it! It is killed by Pills", Donto.getColorLabelStyle(Color.WHITE));
         lblRobot = new MyLabel("This is you. You move with the buttons at the bottom of the screen", Donto.getColorLabelStyle(Color.WHITE));
         lblPill = new MyLabel("Pill. It kills viruses. You can destroy it", Donto.getColorLabelStyle(Color.WHITE));
@@ -98,14 +98,17 @@ public class TutorialStage extends MyStage {
         addActor(lblUpgradeSpeed);
         addActor(lblUpgradeWeapon);
 
-        MyLabel tutorial = new MyLabel("Try to kill all the bad viruses before the time runs out or the good viruses die!", Donto.getColorLabelStyle(Color.WHITE));
-        tutorial.setPosition(100, upgradeWeapon.getY() - 100);
+        MyLabel tutorial = new MyLabel("You are controlling an experimental nanorobot which kills red viruses!\n" +
+                "An arrow show where you have to go to find them. To upgrade your robot you can pick up chips \n" +
+                "that upgrade your weapon, give you shield, or speed you up! Some of the red viruses are immune to\n" +
+                " your weak weapon because they have the better chip. Good luck with your mission warrior!", Donto.getColorLabelStyle(Color.WHITE));
+        tutorial.setPosition(100, upgradeWeapon.getY() - 150);
         addActor(tutorial);
 
 
         TextButton back = new MyButton("", game.btnBack());
         back.setSize(back.getWidth()/2, back.getHeight()/2);
-        back.setPosition(Globals.WORLD_WIDTH/2-back.getWidth()/2, 50);
+        back.setPosition(Globals.WORLD_WIDTH/2-back.getWidth()/2, 10);
         back.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {

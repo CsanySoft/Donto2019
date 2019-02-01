@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import hu.csanysoft.donto.Actors.MovingBackground;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.Donto;
@@ -40,7 +41,7 @@ public class TutorialStage extends MyStage {
         };
         addActor(background);
 */
-
+        addActor(new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE),Globals.WORLD_WIDTH + 600, Globals.WORLD_HEIGHT + 600, -500, -500, 100), 5);
         badVirus = new Image(Assets.manager.get(Assets.BADVIRUS_TEXTURE));
         goodVirus = new Image(Assets.manager.get(Assets.GOODVIRUS_TEXTURE));
         robot = new Image(Assets.manager.get(Assets.ANDROID_TEXTURE));

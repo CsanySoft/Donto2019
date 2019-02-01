@@ -45,7 +45,7 @@ public class MenuStage extends MyStage {
             addActor(new BadVirus(), 20);
         }
 
-        addActor(new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE),Globals.WORLD_WIDTH + 100, Globals.WORLD_HEIGHT + 100, 0, 0, 100), 5);
+        addActor(new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE),Globals.WORLD_WIDTH + 600, Globals.WORLD_HEIGHT + 600, -500, -500, 100), 5);
         TextButton start = new MyButton("",game.btnStart());
         start.addListener(new InputListener() {
             @Override

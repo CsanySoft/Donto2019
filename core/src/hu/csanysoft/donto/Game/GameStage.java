@@ -92,12 +92,12 @@ public class GameStage extends MyStage {
         addActor(waterBackground);
         waterBackground.setZIndex(1);
         //PIRULÁK SPAWNOLÁSA
-        int pillCount = (int)Math.floor(level/5.0);
+        int pillCount = (int)Math.floor(level/2.0);
         for(int i = 0; i < pillCount; i++){
             addActor(new Pill(random(100,WORLD_BOUND_X-100), random(100, WORLD_BOUND_Y-100), random(0,365)));
         }
         //FEHÉRVÉRSEJTEK SPAWNOLÁSA
-        int whiteCellCount = (int)Math.floor(level/10.0);
+        int whiteCellCount = (int)Math.floor(level/3.0);
         for (int i = 0; i < whiteCellCount; i++) {
             WhiteBloodCell cell = new WhiteBloodCell(random(150, WORLD_BOUND_X-150), random(150, WORLD_BOUND_Y-150), robot);
             addActor(cell);
@@ -261,7 +261,7 @@ public class GameStage extends MyStage {
 
         if(upgradeTimer >= 10) {
             upgradeTimer = 0;
-            if(level < 5 && !robot.hasWeaponUpgrade) addActor(new Upgrade(Globals.random.nextInt(2) +1));
+            if(level < 2 && !robot.hasWeaponUpgrade) addActor(new Upgrade(Globals.random.nextInt(2) +1));
             else addActor(new Upgrade(random.nextInt(3)));
         }
     }

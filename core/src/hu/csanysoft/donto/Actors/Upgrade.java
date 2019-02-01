@@ -1,5 +1,8 @@
 package hu.csanysoft.donto.Actors;
 
+import com.badlogic.gdx.Game;
+
+import hu.csanysoft.donto.Game.GameStage;
 import hu.csanysoft.donto.Global.Assets;
 import hu.csanysoft.donto.Global.Globals;
 import hu.csanysoft.donto.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -28,7 +31,7 @@ public class Upgrade extends OneSpriteStaticActor {
             }
         }
         addBaseCollisionRectangleShape();
-        setPosition(Globals.random(100, Globals.WORLD_WIDTH - 100), Globals.WORLD_HEIGHT + 100);
+        setPosition(Globals.random(100, GameStage.WORLD_BOUND_X - 100), GameStage.WORLD_BOUND_Y + 100);
     }
 
     public int getType() {
@@ -43,5 +46,6 @@ public class Upgrade extends OneSpriteStaticActor {
     public void act(float delta) {
         super.act(delta);
         moveBy(0, -0.5f);
+        if(elapsedTime>20) remove();
     }
 }

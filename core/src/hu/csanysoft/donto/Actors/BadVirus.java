@@ -16,7 +16,7 @@ public class BadVirus extends Virus {
 
     public BadVirus() {
         super();
-        if(gameStage.level >= 5) needsABetterWeaponToDestroy = Globals.random(0, 20) < 4;
+        if(gameStage.level >= 2) needsABetterWeaponToDestroy = Globals.random(0, 20) < 4;
         if(needsABetterWeaponToDestroy) addSprite(new AnimatedOffsetSprite(Assets.manager.get(Assets.SHIELD_ATLAS), 0, 0, 75,75));
         body = new OffsetSprite(Assets.manager.get(Assets.BADVIRUS_TEXTURE), 0,0,64,64);
         addSprite(body);

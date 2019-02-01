@@ -69,11 +69,19 @@ public class GameStage extends MyStage {
         background.setPositionCenterOfActorToCenterOfViewport();
         addActor(background);
         background.setZIndex(0);
+        //PIRULÁK SPAWNOLÁSA
         int pillCount = (int)Math.floor(level/5.0);
         for(int i = 0; i < pillCount; i++){
             addActor(new Pill(random(100,WORLD_BOUND_X-100), random(100, WORLD_BOUND_Y-100), random(0,365)));
         }
-        addActor(new WhiteBloodCell(robot.getX()+300, robot.getY()+300, robot));
+        //FEHÉRVÉRSEJTEK SPAWNOLÁSA
+        int whiteCellCount = (int)Math.floor(level/10.0);
+        for (int i = 0; i < whiteCellCount; i++) {
+            WhiteBloodCell cell = new WhiteBloodCell(random(150, WORLD_BOUND_X-150), random(150, WORLD_BOUND_Y-150), robot);
+            addActor(cell);
+            while(cell.getX() > WORLD_BOUND_X/2-200 && cell.getX() < WORLD_BOUND_X/2+200) cell.setX(random(150, WORLD_BOUND_X-150));
+            while(cell.getY() > WORLD_BOUND_Y/2-200 && cell.getY() < WORLD_BOUND_Y/2+200) cell.setY(random(150, WORLD_BOUND_Y-150));
+        }
     }
 
     @Override
@@ -162,7 +170,7 @@ public class GameStage extends MyStage {
 
             //ROBOT A PIRULÁVAL
             else if (actor instanceof Pill){
-                if(robot.overlaps((MyActor) actor)) {
+                if(robot.overlaps((MyActor) actor) && !robot.hasShield) {
                     actor.remove();
                 }
             }
@@ -218,9 +226,18 @@ public class GameStage extends MyStage {
         if(keyCode == Input.Keys.F){
             robot.addUpgrade(Upgrade.WEAPON);
         }
+        if(keyCode == Input.Keys.W){
+            WhiteBloodCell cell = new WhiteBloodCell(random(150, WORLD_BOUND_X-150), random(150, WORLD_BOUND_Y-150), robot);
+            addActor(cell);
+            while(cell.getX() > WORLD_BOUND_X/2-200 && cell.getX() < WORLD_BOUND_X/2+200) cell.setX(random(150, WORLD_BOUND_X-150));
+            while(cell.getY() > WORLD_BOUND_Y/2-200 && cell.getY() < WORLD_BOUND_Y/2+200) cell.setY(random(150, WORLD_BOUND_Y-150));
+        }
+
+
         if(keyCode == Input.Keys.BACK || keyCode == Input.Keys.ESCAPE){
             game.setScreenBackByStackPop();
         }
+
 
         return super.keyDown(keyCode);
     }

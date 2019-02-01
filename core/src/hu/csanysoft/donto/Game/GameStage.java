@@ -10,9 +10,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+
 
 import hu.csanysoft.donto.Actors.*;
 import hu.csanysoft.donto.Global.Assets;
@@ -32,7 +34,7 @@ public class GameStage extends MyStage {
 
     public boolean left = false, right = false, forward = false, won = false;
     Robot robot;
-    OneSpriteStaticActor background;
+    OneSpriteStaticActor background, closestArrow;
     MovingBackground waterBackground;
     public static int level = 1;
     public int badVirusCount, goodVirusCount;
@@ -68,17 +70,25 @@ public class GameStage extends MyStage {
     public void init() {
         Gdx.input.setCatchBackKey(true);
         //PLAYER HOZZÁADÁSA
+        Image kek = new Image(Assets.manager.get(Assets.KEK));
+        kek.setSize(3000, 2000);
+        kek.setPosition(0 - (1920 - Globals.WORLD_WIDTH) / 1.5f, -500);
+        addActor(kek, 0);
         robot = new Robot(50,50);
         addActor(robot);
         robot.setPosition(WORLD_BOUND_X/2, WORLD_BOUND_Y/2);
         robot.setZIndex(10);
+        closestArrow = new OneSpriteStaticActor(Assets.manager.get(Assets.NAVIARROW_TEXTURE));
+        closestArrow.setSize(120, 120);
+        closestArrow.setOrigin(60,60);
+        addActor(closestArrow);
         //HÁTTÉR
         background = new OneSpriteStaticActor(Assets.manager.get(Assets.BACKGROUND_TEXTURE));
         background.setSize(WORLD_BOUND_X, WORLD_BOUND_Y);
         background.setPositionCenterOfActorToCenterOfViewport();
         addActor(background);
         background.setZIndex(0);
-        waterBackground = new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE), WORLD_BOUND_X+200, WORLD_BOUND_Y+200, 0,0, 200);
+        waterBackground = new MovingBackground(Assets.manager.get(Assets.BACKGROUNDWATER_TEXTURE), kek.getWidth()+200, kek.getHeight()+200, kek.getX(),kek.getY(), 200);
         addActor(waterBackground);
         waterBackground.setZIndex(1);
         //PIRULÁK SPAWNOLÁSA
@@ -94,6 +104,8 @@ public class GameStage extends MyStage {
             while(cell.getX() > WORLD_BOUND_X/2-200 && cell.getX() < WORLD_BOUND_X/2+200) cell.setX(random(150, WORLD_BOUND_X-150));
             while(cell.getY() > WORLD_BOUND_Y/2-200 && cell.getY() < WORLD_BOUND_Y/2+200) cell.setY(random(150, WORLD_BOUND_Y-150));
         }
+
+
     }
 
     @Override
@@ -118,7 +130,27 @@ public class GameStage extends MyStage {
             if (right || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 robot.rotateBy(-(robot.baseSpeed + robot.speedUpgrade / 2));
             }
+
         }
+        if(!robot.isVisible() || won)closestArrow.setVisible(false);
+        closestArrow.setPosition(robot.getX()-33, robot.getY()-33);
+        float min = 1000;
+        BadVirus closest = null;
+        for(Actor actor : getActors()){
+            if(actor instanceof BadVirus){
+                float distance = (float)Math.sqrt(Math.pow(Math.abs(robot.getX() - actor.getX()), 2)+Math.pow(Math.abs(robot.getY() - actor.getY()), 2));
+                if(distance < min){
+                    min = distance;
+                    closest = (BadVirus)actor;
+                }
+            }
+        }
+        if(closest!= null){
+            closestArrow.setRotation((float)Math.toDegrees(Math.atan2((closest.getY()-robot.getY()),(closest.getX()-robot.getX())))-90);
+        }
+
+
+
         //KARAKTER MOZGÁSA VÉGE
 
         //ÜTKÖZÉSVIZSGÁLAT

@@ -77,6 +77,8 @@ public class GameStage extends MyStage {
         for (Actor actor : getActors()) {
             if(actor instanceof Virus) {
                 Virus overlappedVirus = (Virus)actor;
+
+                //VÍRUS  VÍRUSSAL
                 for(Actor virus : getActors()) {
                     if(actor instanceof GoodVirus && virus instanceof BadVirus) {
                         if(((GoodVirus) actor).overlaps((BadVirus) virus)) actor.remove();
@@ -84,6 +86,9 @@ public class GameStage extends MyStage {
                         if(((BadVirus) actor).overlaps((GoodVirus) virus)) virus.remove();
                     }
                 }
+                //VÍRUS A VÍRUSSAL VÉGE
+
+                //ROBOT A VÍRUSSAL
                 if(robot.overlaps(overlappedVirus)) {
                     if(overlappedVirus instanceof GoodVirus) die();
                     else if(overlappedVirus instanceof BadVirus) {
@@ -93,7 +98,10 @@ public class GameStage extends MyStage {
                         overlappedVirus.remove();
                     }
                 }
+                //ROBOT A VÍRUSSAL VÉGE
             }
+
+            //ROBOT AZ UPGRADEVAL
             else if (actor instanceof Upgrade) {
                 Upgrade overlappedUpgrade = (Upgrade)actor;
                 if(robot.overlaps(overlappedUpgrade)) {
@@ -101,6 +109,7 @@ public class GameStage extends MyStage {
                     overlappedUpgrade.remove();
                 }
             }
+            //ROBOT AZ UPGRADEVAL VÉGE
         }
         //ÜTKÖZÉSVIZSGÁLAT VÉGE
 
